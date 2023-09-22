@@ -1,6 +1,7 @@
 ---
 import Home from "../components/home.astro";
 import Layout from "../components/layout.astro";
+import Projects from "../components/projects.astro";
 ---
 
 <html lang="en">
@@ -12,12 +13,18 @@ import Layout from "../components/layout.astro";
     <title>Gunasekaran Palani</title>
   </head>
   <body class="mx-32 my-3">
-    <Layout />
+    <Layout>
+      <main>
+        <Home />
+        <Projects />
+      </main>
+    </Layout>
   </body>
 </html>
 
 <style type="text/css">
   body {
     font-family: Comfortaa;
+    background-color: #f9faff;
   }
 </style>
