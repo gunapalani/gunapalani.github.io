@@ -15,7 +15,7 @@ const projects = [
   {
     image: "/survay-from.jpg",
     name: "Survey Form",
-    projectUrl: "https://codepen.io/gunapalani19/pen/QWqqPYz?editors=1100",
+    projectUrl: "https://codepen.io/gunapalani19/pen/QWqqPYz",
     description: "I created this personal project in order to show how to create an interface in Figma using a portfolio as an example.",
   },
   {
@@ -27,8 +27,8 @@ const projects = [
 ];
 ---
 
-<div class="mx-32 my-10">
-  <div class="flex justify-center my-4 text-3xl font-extrabold">Projects</div>
+<div class="mx-72 my-10">
+  <div class="flex justify-center my-4 text-3xl font-extrabold leading-snug"><span class="border-solid border-b-[3px] border-[#fdc435]">Projects</span></div>
   <div class="">
     {
       projects.map((project) => (
@@ -41,7 +41,9 @@ const projects = [
             </a>
           </div>
           <div class="w-1/2">
-            <div class="h-64"><img class="rounded-tr-xl rounded-br-xl w-full h-full" src={project.image} /></div>
+            <div class="h-64">
+              <img class="rounded-tr-xl rounded-br-xl w-full h-full" src={project.image} />
+            </div>
           </div>
         </div>
       ))
