@@ -1,6 +1,8 @@
 ---
+import ContactUs from "../components/contact-us.astro";
 import Home from "../components/home.astro";
 import Layout from "../components/layout.astro";
+import Projects from "../components/projects.astro";
 ---
 
 <html lang="en">
@@ -11,13 +13,20 @@ import Layout from "../components/layout.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Gunasekaran Palani</title>
   </head>
-  <body class="mx-32 my-3">
-    <Layout />
+  <body class="mt-3 bg-[#F9FAFF]">
+    <Layout>
+      <main>
+        <Home />
+        <Projects />
+        <ContactUs />
+      </main>
+    </Layout>
   </body>
 </html>
 
 <style type="text/css">
   body {
     font-family: Comfortaa;
+    background-color: #f9faff;
   }
 </style>
