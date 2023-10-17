@@ -1,32 +1,16 @@
 ---
+import Skills from "../components/Skills.astro";
 import ContactUs from "../components/contact-us.astro";
 import Home from "../components/home.astro";
 import Layout from "../components/layout.astro";
 import Projects from "../components/projects.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Gunasekaran Palani</title>
-  </head>
-  <body class="mt-3 bg-[#F9FAFF]">
-    <Layout>
-      <main>
-        <Home />
-        <Projects />
-        <ContactUs />
-      </main>
-    </Layout>
-  </body>
-</html>
-
-<style type="text/css">
-  body {
-    font-family: Comfortaa;
-    background-color: #f9faff;
-  }
-</style>
+<Layout>
+  <main>
+    <Home />
+    <Projects />
+    <Skills />
+    <ContactUs />
+  </main>
+</Layout>
