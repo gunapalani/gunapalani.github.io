@@ -1,23 +1,61 @@
 ---
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 
 <html lang="en">
   <head>
-    <!-- primary tag -->
-    <meta name="robots" content="noindex,nofollow" />
-    <!-- primary tag end -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="canonical" href="https://peninsularresearchops.com/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  </head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="Jenish MS" />
+
+		<title>{title}</title>
+
+		<meta name="title" content="Gunasekaran Palani">
+		<meta name="description"
+			content="As an Energetic Software Engineer with over 1 years of experience, I specialize in App development and Full-Stack development. I possess a tenacious attitude, continuously seeking opportunities for personal growth and skill enhancement to consistently evolve and excel in my craft. Additionally, I actively contribute to Open-Source projects, aiming to foster collaborative innovation within the software development community.">
+		<meta name="keywords" content="Guna,guna,Gunasekaran,Palani,Gunasekaran Palani,Logesh Palani,Gunasekaran P,Guna Palani,guna palani,Logesh,Meena,Guna Logesh, Logesh Guna">
+		<link rel="icon" type="image/png" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="canonical" href="https://gunapalani.github.io/">
+	    <link rel="sitemap" href="/sitemap.xml">
+	    <meta property="robots" content="/robots.txt">
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://gunapalani.github.io/">
+		<meta property="og:title" content="Gunasekaran Palani">
+		<meta property="og:description"
+			content="As an Energetic Software Engineer with over 1 years of experience, I specialize in App development and Full-Stack development. I possess a tenacious attitude, continuously seeking opportunities for personal growth and skill enhancement to consistently evolve and excel in my craft. Additionally, I actively contribute to Open-Source projects, aiming to foster collaborative innovation within the software development community.">
+		<meta property="og:image" content="https://www.c-sharpcorner.com/article/temp/122201/Images/guna-img.png">
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="https://gunapalani.github.io//">
+		<meta property="twitter:title" content="Gunasekaran Palani">
+		<meta property="twitter:description"
+			content="As an Energetic Software Engineer with over 1 years of experience, I specialize in App development and Full-Stack development. I possess a tenacious attitude, continuously seeking opportunities for personal growth and skill enhancement to consistently evolve and excel in my craft. Additionally, I actively contribute to Open-Source projects, aiming to foster collaborative innovation within the software development community.">
+		<meta property="twitter:image" content="https://www.c-sharpcorner.com/article/temp/122201/Images/guna-img.png">
+
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'UA-126730401-1');
+		</script>
+	
+	</head>
   <body class="relative z-50">
     <div><Header /></div>
     <slot />
