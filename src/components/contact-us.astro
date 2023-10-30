@@ -2,22 +2,22 @@
 import Title from "./common/Title.astro";
 ---
 
-<div>
+<div data-aos="fade-up" class="my-10">
   <Title label="CODE WITH GUNA" />
-  <div class="flex justify-center my-4">
+  <div class="md:flex  justify-center m-4">
     <div>
       <div>
         <div class="my-3 font-medium text-[1em] text-[#828282]">Hello, I am</div>
         <input
         
-        type="text" class="rounded-md bg-gray-50 w-96 p-2 focus:outline-[#fdc435]" id="Name" name="Name" placeholder="Name" onblur="nameValidation()" />
+        type="text" class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#fdc435]" id="Name" name="Name" placeholder="Name" onblur="nameValidation()" />
       </div>
       <small id="nameError" class="error"></small>
       <div>
         <div class="my-3 font-medium text-[1em] text-[#828282]">Please contact me at</div>
         <input
           type="email"
-          class="rounded-md w-96 p-2 focus:outline-[#fdc435]"
+          class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#fdc435]"
           id="Email"
           name="Email"
           placeholder="Email Address"
@@ -28,7 +28,7 @@ import Title from "./common/Title.astro";
       <div>
         <div class="my-3 font-medium text-[1em] text-[#828282]">Phone number</div>
         <input
-          class="rounded-md w-96 p-2 focus:outline-[#fdc435]"
+          class="rounded-md bg-gray-50w-full md:w-96 p-2 focus:outline-[#fdc435]"
           type="tel"
           id="PhoneNumber"
           name="PhoneNumber"
@@ -41,7 +41,7 @@ import Title from "./common/Title.astro";
         <div class="my-3 font-medium text-[1em] text-[#828282]">Message</div>
         <textarea
           rows="4"
-          class="rounded-md w-96 p-2 focus:outline-[#fdc435]"
+          class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#fdc435]"
           id="Message"
           name="Message"
           placeholder="Write your needs"
