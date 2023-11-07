@@ -71,7 +71,7 @@ function emailValidation() {
     emailInput.value = email;
   }
   if (!validateEmail(emailInput.value)) {
-    emailError.textContent = "Invalid email format";
+    emailError.textContent = "Please give valid email";
     return false;
   } else {
     emailError.textContent = "";
