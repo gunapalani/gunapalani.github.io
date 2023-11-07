@@ -3,55 +3,68 @@ import Title from "./common/Title.astro";
 const projects = [
   {
     image: "/portfolio.png",
-    aosPosition:"fade-up-right",
+    aosPosition: "fade-up-right",
     name: "Portfolio Webpage",
     projectUrl: "https://codepen.io/gunapalani19-the-sans/pen/zYpxxqr",
-    description: "I created this personal project in order to show how to create an interface in Figma using a portfolio as an example.",
+    description:
+      "This is a web project crafted with HTML, CSS, and JavaScript, showcasing your professional work and skills in a visually appealing and interactive format, making it a valuable tool for self-presentation and personal branding.",
   },
   {
     image: "/product-landing.jpg",
-    aosPosition:"fade-up-left",
+    aosPosition: "fade-up-left",
     name: "Product Landing Page",
     projectUrl: "https://codepen.io/gunapalani19-the-sans/pen/PoOMPKd",
-    description: "I created this personal project in order to show how to create an interface in Figma using a portfolio as an example.",
+    description:
+      "This is a web project created with HTML, CSS, and JavaScript, designed to showcase and promote products with an attractive, interactive, and user-friendly interface. It provides a platform for businesses to present their products effectively to potential customers.",
   },
   {
     image: "/survay-from.jpg",
-    aosPosition:"fade-up-right",
+    aosPosition: "fade-up-right",
     name: "Survey Form",
     projectUrl: "https://codepen.io/gunapalani19/pen/QWqqPYz",
-    description: "I created this personal project in order to show how to create an interface in Figma using a portfolio as an example.",
+    description:
+      "This is a web project developed with HTML, CSS, and JavaScript, designed for creating user-friendly online surveys, collecting data, and providing a seamless, customizable experience.",
   },
   {
     image: "/calculator.png",
-    aosPosition:"fade-up-left",
+    aosPosition: "fade-up-left",
     name: "Responsive Calculator",
     projectUrl: "https://codepen.io/gunameena2002/pen/OJQMQgJ",
-    description: "I created this personal project in order to show how to create an interface in Figma using a portfolio as an example.",
+    description:
+      "This is a web-based scientific calculator project that offers advanced mathematical functions, including logarithms, within a user-friendly interface, making it a powerful tool for complex calculations in a responsive and customizable design.",
   },
 ];
 ---
 
-<div class="md:mx-72 my-10">
+<section id="projects" class="md:mx-72 my-10 md:my-28">
   <Title label="PROJECT'S" />
   <div class="">
     {
       projects.map((project) => (
-        <div class="md:flex justify-center items-center bg-white my-14 rounded-xl" data-aos={project.aosPosition}>
+        <div
+          class="md:flex justify-center items-center bg-white my-14 rounded-xl"
+          data-aos={project.aosPosition}
+        >
           <div class="md:w-1/2 m-5 md:m-10">
             <div class=" text-2xl font-bold my-3">{project.name}</div>
             <div class="text-[#828282] my-3">{project.description}</div>
             <a href={project.projectUrl} target="_blank">
-              <button class="border border-black rounded-3xl py-1 px-3 my-3"> View Project</button>
+              <button class="border border-black rounded-3xl py-1 px-3 my-3">
+                {" "}
+                View Project
+              </button>
             </a>
           </div>
           <div class="md:w-1/2 m-5 md:m-10">
             <div class="h-64">
-              <img class="rounded-tr-xl rounded-br-xl w-full h-full" src={project.image} />
+              <img
+                class="rounded-tr-xl rounded-br-xl w-full h-full"
+                src={project.image}
+              />
             </div>
           </div>
         </div>
       ))
     }
   </div>
-</div>
+</section>
