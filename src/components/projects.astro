@@ -36,35 +36,63 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="md:mx-72 my-10 md:my-28">
-  <Title label="PROJECT'S" />
-  <div class="">
-    {
-      projects.map((project) => (
-        <div
-          class="md:flex justify-center items-center bg-white my-14 rounded-xl"
-          data-aos={project.aosPosition}
-        >
-          <div class="md:w-1/2 m-5 md:m-10">
-            <div class=" text-2xl font-bold my-3">{project.name}</div>
-            <div class="text-[#828282] my-3">{project.description}</div>
-            <a href={project.projectUrl} target="_blank">
-              <button class="border border-black rounded-3xl py-1 px-3 my-3">
-                {" "}
-                View Project
-              </button>
-            </a>
-          </div>
-          <div class="md:w-1/2 m-5 md:m-10">
-            <div class="h-64">
-              <img
-                class="rounded-tr-xl rounded-br-xl w-full h-full"
-                src={project.image}
-              />
+<div class="relative">
+  <!-- <a href={`/`} class="text-black absolute left-24  ">
+    <button>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="50px"
+        height="50px"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-chevron-left"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+  </a>
+  <div class="absolute hidden md:block right-10 bottom-16 w-40"><img src="/yellow-ball.png" /></div>
+  <div class="absolute hidden md:block left-10 top-36 w-40"><img src="/yellow-ball.png" /></div> -->
+  <div class="absolute hidden md:block right-10 -bottom-16 w-40">
+    <img src="/yellow-ball.png" />
+  </div>
+  <div class="absolute hidden md:block left-10 top-10 w-40">
+    <img src="/yellow-ball.png" />
+  </div>
+  <section class="md:mx-72 my-10 md:my-28">
+    <Title label="PROJECT'S" />
+    <div class="">
+      {
+        projects.map((project) => (
+          <div
+            class="md:flex justify-center items-center bg-white my-14 rounded-xl"
+            data-aos={project.aosPosition}
+          >
+            <div class="md:w-1/2 m-5 md:m-10">
+              <div class=" text-2xl font-bold my-3">{project.name}</div>
+              <div class="text-[#828282] my-3">{project.description}</div>
+              <a href={project.projectUrl} target="_blank">
+                <button class="border border-black rounded-3xl py-1 px-3 my-3">
+                  {" "}
+                  View Project
+                </button>
+              </a>
+            </div>
+            <div class="md:w-1/2 m-5 md:m-10">
+              <div class="h-64">
+                <img
+                  class="rounded-tr-xl rounded-br-xl w-full h-full"
+                  src={project.image}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    }
-  </div>
-</section>
+        ))
+      }
+    </div>
+  </section>
+</div>
