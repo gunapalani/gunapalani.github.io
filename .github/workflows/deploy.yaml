@@ -1,14 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [master]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+    branches: [master] # or 'master' based on your branch
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
   pages: write
@@ -18,19 +14,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout your repository
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
+
+      - name: Install, build, and upload site
         uses: withastro/action@v0
 
-      - name: "Say Hello Mona it's Monday"
-        run: echo "$STAGE_GAMIFICATION_API $STAGE_GAMIFICATION_API. Today is $STAGE_GAMIFICATION_API!"
-        env:
-          First_Name: Mona
-        # with:
-        # path: . # The root location of your Astro project inside the repository. (optional)
-        # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
-        # package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+      - name: Dummy upload-artifact to resolve metadata issue
+        uses: actions/upload-artifact@v3
+        with:
+          name: dummy
+          path: ./dummy-path
+          if-no-files-found: ignore
 
   deploy:
     needs: build
@@ -41,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
