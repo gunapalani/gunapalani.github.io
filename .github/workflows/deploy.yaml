@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master] # or 'main' if that's your branch
+    branches: [master]  # Change to 'main' if your default branch is main
   workflow_dispatch:
 
 permissions:
@@ -14,23 +14,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout your repository
         uses: actions/checkout@v3
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
         with:
-          # Uncomment and customize as needed
-          # path: .
-          # node-version: 18
-          # package-manager: pnpm
-          # You can also explicitly set the output-dir if needed:
-          # output: ./dist
+          node-version: 18         # Optional, change if needed
+          package-manager: pnpm    # Optional, use 'npm' or 'yarn' if needed
+          output: ./dist           # Ensure this matches your Astro build output
 
       - name: Upload build output as artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./dist # Make sure this matches your Astro output directory
+          path: ./dist             # This must match the output folder from Astro
 
   deploy:
     needs: build
