@@ -2,75 +2,85 @@
 import Title from "./common/Title.astro";
 ---
 
-<div data-aos="fade-up" class="background-image h-screen">
-  <div class="absolute hidden md:block right-14 bottom-10"><img src="/yellow-ball.png" /></div>
+<div data-aos="fade-up" class=" h-screen">
+  <div class="absolute hidden md:block w-32 right-14 bottom-10">
+    <img src="/yellow-ball.png" />
+  </div>
+  <div class="absolute hidden md:block -left-20 -bottom-10">
+    <img class="w-96 h-96" src="/yellow-ball.png" />
+  </div>
+  <div class="absolute hidden md:block -right-12 top-0">
+    <img src="/yellow-ball.png" />
+  </div>
   <div class="mt-20 absolute flex justify-center items-center w-full">
-    <div>
-      <Title label="CODE WITH GUNA" />
-      <div class="md:flex justify-center">
-        <div>
+    <form action="https://script.google.com/macros/s/AKfycby12uPI9lsg-hOZfV-V6l5wDkBpKzt7IwMlsRN77Ry-py6oMTg7ll1QtoJaPXfANmuQeA/exec">
+      <div>
+        <Title label="CODE WITH GUNA" />
+        <div class="md:flex justify-center">
           <div>
-            <div class="my-3 font-medium text-[1em] text-[#828282]">
-              Hello, I am <span class="text-[red]">*</span>
+            <div>
+              <div class="my-3 font-medium text-[1em] text-[#828282]">
+                Hello, I am <span class="text-[red]">*</span>
+              </div>
+              <input
+                type="text"
+                class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
+                id="Name"
+                name="Name"
+                placeholder="Name"
+                onblur="nameValidation()"
+              />
             </div>
-            <input
-              type="text"
-              class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
-              id="Name"
-              name="Name"
-              placeholder="Name"
-              onblur="nameValidation()"
-            />
-          </div>
-          <small id="nameError" class="error"></small>
-          <div>
-            <div class="my-3 font-medium text-[1em] text-[#828282]">
-              Please contact me at <span class="text-[red]">*</span>
+            <small id="nameError" class="error"></small>
+            <div>
+              <div class="my-3 font-medium text-[1em] text-[#828282]">
+                Please contact me at <span class="text-[red]">*</span>
+              </div>
+              <input
+                type="email"
+                class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
+                id="Email"
+                name="Email"
+                placeholder="Email Address"
+                onblur=";emailValidation()"
+              />
             </div>
-            <input
-              type="email"
-              class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
-              id="Email"
-              name="Email"
-              placeholder="Email Address"
-              onblur=";emailValidation()"
-            />
-          </div>
-          <small id="emailError" class="error"></small>
-          <div>
-            <div class="my-3 font-medium text-[1em] text-[#828282]">
-              Phone Number <span class="text-[red]">*</span>
+            <small id="emailError" class="error"></small>
+            <div>
+              <div class="my-3 font-medium text-[1em] text-[#828282]">
+                Phone Number <span class="text-[red]">*</span>
+              </div>
+              <input
+                class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
+                type="tel"
+                id="PhoneNumber"
+                name="PhoneNumber"
+                placeholder="(xxxxx xxxx)"
+                onblur=";phoneValidation()"
+              />
             </div>
-            <input
-              class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
-              type="tel"
-              id="PhoneNumber"
-              name="PhoneNumber"
-              placeholder="(xxxxx xxxx)"
-              onblur=";phoneValidation()"
-            />
-          </div>
-          <small id="phoneError" class="error"></small>
-          <div>
-            <div class="my-3 font-medium text-[1em] text-[#828282]">
-              Message <span class="text-[red]">*</span>
+            <small id="phoneError" class="error"></small>
+            <div>
+              <div class="my-3 font-medium text-[1em] text-[#828282]">
+                Message <span class="text-[red]">*</span>
+              </div>
+              <textarea
+                rows="4"
+                class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
+                id="Message"
+                name="Message"
+                placeholder="Write your needs"
+                onblur=";messageValidation()"></textarea>
             </div>
-            <textarea
-              rows="4"
-              class="rounded-md bg-gray-50 w-full md:w-96 p-2 focus:outline-[#ffde29]"
-              id="Message"
-              name="Message"
-              placeholder="Write your needs"
-              onblur=";messageValidation()"></textarea>
+            <small id="messageError" class="error"></small>
+            <button type="submit"
+              class="p-2 w-full my-4 bg-[#ffde29] font-semibold rounded-md px-2"
+              id="hadleSubmit">Send</button
+            >
           </div>
-          <small id="messageError" class="error"></small>
-          <button
-            class="p-2 w-full my-4 bg-[#ffde29] font-semibold rounded-md px-2"
-            id="hadleSubmit">Send</button
-          >
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 <style>

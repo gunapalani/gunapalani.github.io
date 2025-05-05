@@ -1,5 +1,5 @@
 let isTrimRequired = false;
-
+let toggle = true;
 function nameValidation() {
   const nameInput = document.getElementById("Name");
   const nameError = document.getElementById("nameError");
@@ -113,3 +113,16 @@ async function handleSubmit(event) {
 
 const submitButton = document.getElementById("hadleSubmit");
 submitButton.addEventListener("click", handleSubmit);
+
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById("hamburger");
+  if (toggle == true) {
+    mobileMenu.classList.add("flex");
+    mobileMenu.classList.remove("hidden");
+    toggle = false;
+  } else {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+    toggle = true;
+  }
+}
