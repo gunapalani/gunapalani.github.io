@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install, build, and upload site
-        uses: withastro/action@v0
+        uses: withastro/action@v1
 
       - name: Dummy upload-artifact to resolve metadata issue
         uses: actions/upload-artifact@v4
