@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master] # or 'master' based on your branch
+    branches: [master] # or 'main'
   workflow_dispatch:
 
 permissions:
@@ -15,16 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4   # ⬅️ update to v4
 
       - name: Install, build, and upload site
-        uses: withastro/action@v1
+        uses: withastro/action@v2   # ⬅️ update Astro action (v2 supports latest)
 
-      - name: Dummy upload-artifact to resolve metadata issue
-        uses: actions/upload-artifact@v4
-        with:
-          name: dummy
-          path: ./dummy-path
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3   # ⬅️ update to v3 (fixes v3 deprecation issue)
 
   deploy:
     needs: build
@@ -35,4 +32,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4   # ⬅️ update to v4
