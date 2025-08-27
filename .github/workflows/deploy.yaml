@@ -17,17 +17,13 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v4
 
-      - name: Install, build site (no auto upload)
+      - name: Install, build, and upload site
         uses: withastro/action@v2
         with:
           package-manager: npm   # or pnpm / yarn depending on your project
           node-version: 20
-          upload-artifact: false # ⬅️ disable Astro's built-in upload
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist   # Astro outputs here
+          # no need for upload-artifact: false
+          # Astro auto-uploads the dist/ folder as a GitHub Pages artifact
 
   deploy:
     needs: build
