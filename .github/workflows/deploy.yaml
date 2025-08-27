@@ -25,7 +25,6 @@ jobs:
         with:
           name: dummy
           path: ./dummy-path
-          if-no-files-found: ignore
 
   deploy:
     needs: build
