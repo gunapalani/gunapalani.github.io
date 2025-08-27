@@ -15,13 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository
-        uses: actions/checkout@v4   # ⬅️ update to v4
+        uses: actions/checkout@v4
 
       - name: Install, build, and upload site
-        uses: withastro/action@v2   # ⬅️ update Astro action (v2 supports latest)
+        uses: withastro/action@v2
+        with:
+          package-manager: npm # or pnpm / yarn depending on your project
+          node-version: 20
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3   # ⬅️ update to v3 (fixes v3 deprecation issue)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist   # ⬅️ point to Astro’s build output folder
 
   deploy:
     needs: build
@@ -32,4 +37,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4   # ⬅️ update to v4
+        uses: actions/deploy-pages@v4
