@@ -21,7 +21,7 @@ jobs:
         uses: withastro/action@v0
 
       - name: Dummy upload-artifact to resolve metadata issue
-  uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: dummy
           path: ./dummy-path
