@@ -1,0 +1,77 @@
+---
+import SkillsCol from "../skills/SkillsCol.astro";
+---
+
+<section id="skills" class="py-20 bg-[#0a0a0a]">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-[#64ffda] font-medium mb-2">&lt; my expertise /&gt;</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
+        Skills
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <section>
+      <div
+        class="grid grid-cols-4 text-white gap-8 max-md:gap-4 max-md:grid-cols-2 max-sm:grid-cols-1 rounded-lg"
+      >
+        <SkillsCol label="Angular" color="#dd1b16" percentage="90%">
+          <img src="/skills/angular.svg" alt="Angular" />
+        </SkillsCol>
+        <SkillsCol label="React" color="#00d8ff" percentage="80%">
+          <img src="/skills/react-js.svg" alt="React" />
+        </SkillsCol>
+        <SkillsCol label="TypeScript" color="#3178c6" percentage="90%">
+          <img src="/skills/typescript.svg" alt="TypeScript" />
+        </SkillsCol>
+        <SkillsCol label="JavaScript" color="#f7df1e" percentage="95%">
+          <img src="/skills/javascript.svg" alt="JavaScript" />
+        </SkillsCol>
+
+        <!-- 🔵 Backend -->
+        <SkillsCol label="Node.js" color="#339933" percentage="95%">
+          <img src="/skills/nodejs.svg" alt="Node.js" />
+        </SkillsCol>
+        <SkillsCol label="C#" color="#68217a" percentage="80%">
+          <img src="/skills/csharp.png" alt="CSharp" />
+        </SkillsCol>
+        <SkillsCol label=".NET" color="#512bd4" percentage="90%">
+          <img src="/skills/.net.png" alt=".NET" />
+        </SkillsCol>
+        <SkillsCol label="MongoDB" color="#47a248" percentage="90%">
+          <img src="/skills/mongodb.svg" alt="MongoDB" />
+        </SkillsCol>
+        <SkillsCol label="SQL" color="#f29111" percentage="70%">
+          <img src="/skills/sql1.png" alt="SQL" />
+        </SkillsCol>
+        <SkillsCol label="Python" color="#3776ab" percentage="50%">
+          <img src="/skills/python.svg" alt="Python" />
+        </SkillsCol>
+
+        <SkillsCol label="Flutter" color="#02569b" percentage="70%">
+          <img src="/skills/flutter.svg" alt="Flutter" />
+        </SkillsCol>
+
+        <SkillsCol label="Azure" color="#0078d7" percentage="80%">
+          <img src="/skills/azure.svg" alt="Azure" />
+        </SkillsCol>
+      </div>
+      <div
+        class="flex flex-wrap justify-center gap-4 animate-fade-in mt-10"
+        style="animation-delay: 0.8s"
+      >
+        <a href="/skills" class="button">View More</a>
+      </div>
+    </section>
+
+    <style>
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+    </style>
+  </div>
+</section>

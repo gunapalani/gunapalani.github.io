@@ -1,98 +1,228 @@
 ---
-import Title from "./common/Title.astro";
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  features: string[];
+  live: string;
+  links?: { text: string; url: string }[]; // added optional links property
+}
+
+const projects: Project[] = [
   {
-    image: "/portfolio.png",
-    aosPosition: "fade-up-right",
-    name: "Portfolio Webpage",
-    projectUrl: "https://codepen.io/gunapalani19-the-sans/pen/zYpxxqr",
+    title: "Reward Rally",
     description:
-      "This is a web project crafted with HTML, CSS, and JavaScript, showcasing your professional work and skills in a visually appealing and interactive format, making it a valuable tool for self-presentation and personal branding.",
+      "A comprehensive enterprise gamification platform that transforms engagement and productivity through customizable challenges, rewards, and analytics. Features include real-time leaderboards, achievement tracking, and seamless integration with existing systems.",
+    image: "/projects/reward-rally.gif",
+    tech: ["Node.js", "MongoDB", ".NET Core", "Angular", "Azure", "Docker"],
+    features: [
+      "Microservices architecture with Node.js and .NET Core",
+      "Azure AD B2C authentication integration",
+      "Custom NPM packages for React, Angular, and Flutter",
+      "Admin panel with Tailwind CSS",
+      "Teams & Shopify extensions",
+    ],
+    live: "https://www.rewardrally.in/",
   },
   {
-    image: "/product-landing.jpg",
-    aosPosition: "fade-up-left",
-    name: "Product Landing Page",
-    projectUrl: "https://codepen.io/gunapalani19-the-sans/pen/PoOMPKd",
+    title: "Media Monitoring Dashboard",
     description:
-      "This is a web project created with HTML, CSS, and JavaScript, designed to showcase and promote products with an attractive, interactive, and user-friendly interface. It provides a platform for businesses to present their products effectively to potential customers.",
+      "Real-time analytics dashboard that transforms media data into actionable insights. Built with a focus on performance and user experience, featuring interactive visualizations and comprehensive reporting tools.",
+    image: "/projects/data-analytics.png",
+    tech: ["React", "Redux", "Azure ADB2C", "D3.js", "Node.js", "PostgreSQL"],
+    features: [
+      "Interactive word clouds and time-series visualizations",
+      "Real-time news data integration with websockets",
+      "Advanced filtering and data export capabilities",
+      "Role-based access control with Azure ADB2C",
+    ],
+    live: "",
   },
   {
-    image: "/survay-from.jpg",
-    aosPosition: "fade-up-right",
-    name: "Survey Form",
-    projectUrl: "https://codepen.io/gunapalani19/pen/QWqqPYz",
+    title: "Reward Rally – Microsoft Teams Extension",
     description:
-      "This is a web project developed with HTML, CSS, and JavaScript, designed for creating user-friendly online surveys, collecting data, and providing a seamless, customizable experience.",
+      "Microsoft Teams Tab and Bot extension for Reward Rally, enabling seamless employee engagement directly within Teams. It allows users to track challenges, earn rewards, and view leaderboards without leaving Teams.",
+    image: "/projects/teams.png",
+    tech: ["Teams SDK", "Bot Framework", "Azure", "Node.js"],
+    features: [
+      "Teams Tab integration for personalized dashboards",
+      "Bot for real-time notifications and interactions",
+      "SSO with Azure AD for secure access",
+    ],
+    live: "https://appsource.microsoft.com/en-us/product/office/wa200007920?tab=overview",
   },
   {
-    image: "/calculator.png",
-    aosPosition: "fade-up-left",
-    name: "Responsive Calculator",
-    projectUrl: "https://codepen.io/gunameena2002/pen/OJQMQgJ",
+    title: "Reward Rally – Shopify Extension",
     description:
-      "This is a web-based scientific calculator project that offers advanced mathematical functions, including logarithms, within a user-friendly interface, making it a powerful tool for complex calculations in a responsive and customizable design.",
+      "Shopify Theme App Extension and Checkout Extension that integrates Reward Rally’s gamification features into the e-commerce experience. Merchants can reward customers for purchases, referrals, and engagement.",
+    image: "/projects/shopify.webp",
+    tech: ["Shopify App Bridge", "Remix", "Node.js", "React", "Azure"],
+    features: [
+      "Theme extension for embedding reward widgets",
+      "Checkout extension to apply reward points seamlessly",
+      "Real-time synchronization with Reward Rally platform",
+    ],
+    live: "https://apps.shopify.com/reward-rally",
+  },
+  {
+    title: "Corporate Websites",
+    description:
+      "Collection of high-performance, accessible corporate websites built with modern technologies. Each site features custom animations, optimized assets, and seamless content management integration.",
+    image: "/projects/website.png",
+    tech: ["AstroJS", "GSAP", "TailwindCSS", "Strapi CMS", "TypeScript"],
+    features: [
+      "Blazing fast page loads with server-side rendering",
+      "Engaging scroll-based animations using GSAP",
+      "Headless CMS integration for content management",
+      "100/100 Lighthouse performance scores",
+    ],
+    live: "https://www.peninsularresearchops.com/",
+    links: [
+      { text: "PRO Website", url: "https://www.peninsularresearchops.com/" },
+      { text: "KYN Website", url: "https://www.kynhood.com" },
+    ],
   },
 ];
 ---
 
-<div class="relative">
-  <!-- <a href={`/`} class="text-black absolute left-24  ">
-    <button>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="50px"
-        height="50px"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="feather feather-chevron-left"
+<section id="projects" class="py-20 bg-[#0a192f]">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+      <p class="text-[#64ffda] font-medium mb-2">&lt; what i've built /&gt;</p>
+      <h2
+        class="text-3xl md:text-4xl font-bold text-white relative inline-block"
       >
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-    </button>
-  </a>
-  <div class="absolute hidden md:block right-10 bottom-16 w-40"><img src="/yellow-ball.png" /></div>
-  <div class="absolute hidden md:block left-10 top-36 w-40"><img src="/yellow-ball.png" /></div> -->
-  <div class="absolute hidden md:block right-10 -bottom-16 w-40">
-    <img src="/yellow-ball.png" />
-  </div>
-  <div class="absolute hidden md:block left-10 top-10 w-40">
-    <img src="/yellow-ball.png" />
-  </div>
-  <section class="md:mx-72 my-10 md:my-28">
-    <Title label="PROJECT'S" />
-    <div class="">
+        Featured Projects
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <div class="space-y-24">
       {
-        projects.map((project) => (
+        projects.map((project, index) => (
           <div
-            class="md:flex justify-center items-center bg-white my-14 rounded-xl"
-            data-aos={project.aosPosition}
+            class={`flex flex-col md:flex-row items-stretch gap-8 ${
+              index % 2 === 1 ? "md:flex-row-reverse" : ""
+            }`}
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay={index * 200}
           >
-            <div class="md:w-1/2 m-5 md:m-10">
-              <div class=" text-2xl font-bold my-3">{project.name}</div>
-              <div class="text-[#828282] my-3">{project.description}</div>
-              <a href={project.projectUrl} target="_blank">
-                <button class="border border-black rounded-3xl py-1 px-3 my-3">
-                  {" "}
-                  View Project
-                </button>
-              </a>
+            {/* Project Image */}
+            <div
+              class="md:w-1/2 rounded-xl overflow-hidden bg-[#64ffda]/10 shadow-lg relative group"
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              data-aos-duration="1200"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                <span class="text-[#64ffda] text-lg font-medium">
+                  <a href={project.live} target="_blank">View Project</a>
+                </span>
+              </div>
             </div>
-            <div class="md:w-1/2 m-5 md:m-10">
-              <div class="h-64">
-                <img
-                  class="rounded-tr-xl rounded-br-xl w-full h-full"
-                  src={project.image}
-                />
+
+            {/* Project Content */}
+            <div
+              class="md:w-1/2 flex"
+              data-aos={index % 2 === 0 ? "fade-left" : "fade-right"}
+              data-aos-duration="1200"
+            >
+              <div class="relative backdrop-blur-md bg-[#112240]/90 p-8 rounded-xl flex flex-col justify-center shadow-lg transition duration-500 hover:shadow-[#64ffda]/20 hover:-translate-y-1">
+                <h3
+                  class="text-[#64ffda] text-sm tracking-wider mb-2 uppercase"
+                  data-aos="fade-down"
+                  data-aos-duration="800"
+                >
+                  Featured Project
+                </h3>
+                <h4
+                  class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-[#64ffda] transition-colors duration-300"
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                >
+                  {project.title}
+                </h4>
+                <p
+                  class="text-gray-400 mb-6 leading-relaxed"
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                >
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div
+                  class="flex flex-wrap gap-2 mb-6"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="1000"
+                >
+                  {project.tech.map((tech) => (
+                    <span class="text-xs md:text-sm text-[#64ffda] bg-[#64ffda]/10 px-3 py-1 rounded-full border border-[#64ffda]/30 transition duration-300 hover:bg-[#64ffda]/20 hover:scale-105">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Features */}
+                <ul
+                  class="space-y-2 text-gray-400"
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                >
+                  {project.features.map((feature, i) => (
+                    <li
+                      class="flex items-start transition duration-300 hover:text-[#64ffda]"
+                      data-aos="fade-up"
+                      data-aos-delay={i * 150}
+                      data-aos-duration="1000"
+                    >
+                      <span class="text-[#64ffda] mr-2">▹</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Links */}
+                <div
+                  class="flex gap-6 mt-8"
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                >
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-[#64ffda] font-medium flex items-center gap-2 transition-colors duration-300 hover:text-white hover:underline"
+                    >
+                      🚀 Visit Site
+                    </a>
+                  )}
+                  {project.links &&
+                    project.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[#64ffda] font-medium flex items-center gap-2 transition-colors duration-300 hover:text-white hover:underline"
+                      >
+                        🔗 {link.text}
+                      </a>
+                    ))}
+                </div>
               </div>
             </div>
           </div>
         ))
       }
     </div>
-  </section>
-</div>
+  </div>
+</section>

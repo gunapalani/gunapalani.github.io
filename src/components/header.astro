@@ -1,71 +1,132 @@
 ---
 
 ---
+<link
+  href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+  rel="stylesheet"
+/>
 
-<div
-  class="fixed md:block bg-[#445560] bg-opacity top-0 left-0 w-full z-50 text-white font-semibold"
+<header
+  class="fixed w-full z-50 bg-[#0a192f]/90 backdrop-blur-md border-b border-[#233554]/50"
 >
-  <div class="hidden md:flex justify-between items-center mx-14">
-    <button><a href="/">Gunasekaran Palani</a></button>
-    <div class="flex gap-10 justify-end p-3">
-      <button><a href="/#projects">Projects</a></button>
-      <button><a href="/#skills">Skills</a></button>
-      <!-- <button>Blogs</button> -->
-      <button
-        ><a href="/contactUs"
-          >Contact<a></a>
-          <button
-            onclick="window.location.href = 'https://drive.google.com/file/d/1koI6ZhVc96n3DX_qRoRUanT4aNQvWz8e/view?usp=sharing'"
-            class="bg-[#fdc435] opacity-100 text-black py-[5px] px-3 rounded-md"
-            >Resume</button
-          >
-        </a>
-      </button>
-    </div>
-    <div class="mobileMenu text-white flex justify-end ml-auto md:hidden">
-      <button onclick=";toggleMobileMenu()">
-        <svg
-          height="32px"
-          id="Layer_1"
-          style="enable-background:new 0 0 32 32;"
-          version="1.1"
-          viewBox="0 0 32 32"
-          width="32px"
-          fill="currentColor"
-          ><path
-            d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"
-          ></path></svg
+  <div class="container mx-auto px-8">
+    <nav class="flex items-center justify-between h-[80px]">
+      <a href="/" class="text-2xl font-bold text-[#64ffda] font-signature"
+        >Gunasekaran Palani</a
+      >
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-8 items-center">
+        <a
+          href="#skills"
+          class="text-base text-gray-300 hover:text-[#64ffda] transition-colors duration-300"
+          >Skills</a
         >
+        <a
+          href="#projects"
+          class="text-base text-gray-300 hover:text-[#64ffda] transition-colors duration-300"
+          >Projects</a
+        >
+        <a
+          href="#contact"
+          class="text-base text-gray-300 hover:text-[#64ffda] transition-colors duration-300"
+          >Contact</a
+        >
+        <a
+          href="/resume/Gunasekaran P - Software Engineer.pdf"
+          download="Guna-Palani-Software-Engineer.pdf"
+          class="text-base px-4 py-2 border border-[#64ffda] text-[#64ffda] rounded-md hover:bg-[#64ffda]/10 transition-colors duration-300"
+          >Resume</a
+        >
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="md:hidden text-white"
+        id="menuButton"
+        aria-label="Toggle menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
       </button>
-    </div><div
-      class="w-[16em] p-5 bg-[#445560] fixed right-0 text-left rounded-lg mt-2 hidden z-10"
-      id="hamburger"
-    >
-      <div class="w-full text-center">
-        <ul class="flex flex-col gap-y-5">
-          <li class="nav-item home-nav" id="home-nav">
-            <a href="/#projects" onclick="toggleMobileMenu()">Projects</a>
-          </li>
-          <li class="nav-item about-nav" id="about-nav">
-            <a href="/#skills" onclick="toggleMobileMenu()">Skills</a>
-          </li>
-          <li class="nav-item process-nav" id="process-nav">
-            <a href="/contactUs" onclick="toggleMobileMenu()">Contact</a>
-          </li>
-          <li>
-            <button
-              onclick="window.location.href = 'https://drive.google.com/file/d/1koI6ZhVc96n3DX_qRoRUanT4aNQvWz8e/view?usp=sharing'"
-              class="bg-[#fdc435] opacity-100 text-black py-[5px] px-3 rounded-md"
-              >Resume</button
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden relative">
+      <div
+        id="mobileMenu"
+        class="absolute inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out"
+      >
+        <div class="flex justify-end p-6">
+          <button id="closeMenu" aria-label="Close menu">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-          </li>
-        </ul>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 p-8">
+          <a
+            href="#skills"
+            class="text-lg font-medium text-gray-300 hover:text-[#64ffda]"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="text-lg font-medium text-gray-300 hover:text-[#64ffda]"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="text-lg font-medium text-gray-300 hover:text-[#64ffda]"
+            >Contact</a
+          >
+          <a
+            href="/resume/Gunasekaran P - Software Engineer.pdf"
+            download="Guna-Palani-Software-Engineer.pdf"
+            class="text-lg font-medium px-4 py-2 border border-[#64ffda] text-[#64ffda] rounded-md hover:bg-[#64ffda]/10 transition-colors duration-300"
+            >Resume</a
+          >
+        </nav>
       </div>
     </div>
   </div>
-  <style>
-    .bg-opacity {
-      opacity: 0.7;
-    }
-  </style>
-</div>
+</header>
+
+<script>
+  const menuButton: any = document.getElementById("menuButton");
+  const closeButton: any = document.getElementById("closeMenu");
+  const mobileMenu: any = document.getElementById("mobileMenu");
+  const mobileMenuLinks = document.querySelectorAll("#mobileMenu a");
+
+  function toggleMenu() {
+    mobileMenu.classList.toggle("translate-x-full");
+  }
+
+  menuButton.addEventListener("click", toggleMenu);
+  closeButton.addEventListener("click", toggleMenu);
+
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", toggleMenu);
+  });
+</script>

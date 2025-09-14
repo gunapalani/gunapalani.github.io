@@ -1,0 +1,57 @@
+---
+import CertificationCol from "../certification/CertificationCol.astro";
+---
+
+<section
+  id="certifications"
+  class="py-20 bg-gradient-to-br from-[#0a0a0a] to-[#112240]"
+>
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-[#64ffda] font-medium mb-2">
+        &lt; my certifications /&gt;
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
+        Certifications
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <div
+      class="grid grid-cols-2 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1 mx-7 md:mx-32"
+    >
+      <CertificationCol
+        title="Microsoft Certified: Azure Developer Associate"
+        desc="Exam AZ-204"
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/C4715472C7A9BDA3?sharingId=C4427C3F12BAF488"
+      />
+      <CertificationCol
+        title="Microsoft Certified: Azure AI Engineer Associate"
+        desc="Exam AI-102"
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/5EDC3BDC6798DD2F?sharingId=C4427C3F12BAF488"
+      />
+      <CertificationCol
+        title="Microsoft Certified: Azure Data Scientist Associate"
+        desc="Exam DP-100"
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/ACE4A998ED7FE7CD?sharingId=C4427C3F12BAF488"
+      />
+      <CertificationCol
+        title="Most Valuable Professional (MVP)"
+        desc="C# Corner Developer Community Award"
+        img="/certification/csharpcorner.png"
+        link="https://www.c-sharpcorner.com/members/guna-palani"
+      />
+    </div>
+    <div
+      class="flex flex-wrap justify-center gap-4 animate-fade-in mt-10"
+      style="animation-delay: 0.8s"
+    >
+      <a href="/certification" class="button">View More</a>
+    </div>
+  </div>
+</section>

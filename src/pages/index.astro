@@ -1,20 +1,24 @@
 ---
-import Skills from "../components/Skills.astro";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/header.astro";
+import Projects from "../components/projects.astro";
 import Footer from "../components/footer.astro";
-
-import Home from "../components/home.astro";
-import HomeProjects from "../components/homeProjects.astro";
-import Layout from "../components/layout.astro";
+import Hero from "../components/hero.astro";
+import Contact from "../components/contact.astro";
+import Skills from "../components/home/skills.astro";
+import Certification from "../components/home/certification.astro";
+import Blogs from "../components/home/blogs.astro";
 ---
 
-<Layout title={"Gunasekaran Palani"} >
+<Layout title="GUNASEKARAN P - Software Engineer Portfolio">
+  <Header />
   <main>
-    <Home />
-    <HomeProjects />
+    <Hero />
     <Skills />
-    <Footer  />
+    <Projects />
+    <Certification />
+    <Blogs />
+    <Contact />
   </main>
+  <Footer />
 </Layout>
-
-
-

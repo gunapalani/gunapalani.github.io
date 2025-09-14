@@ -1,0 +1,88 @@
+---
+import BlogCard from "./BlogCard.astro";
+
+const blogs = [
+  {
+    title: "10 Real-World Tips to Improve Code Quality (That Actually Work)",
+    link: "https://www.linkedin.com/pulse/10-real-world-tips-improve-code-quality-actually-work-palani-5nyje/",
+    date: "July 22, 2025",
+    desc: "Practical tips and strategies for enhancing code quality in real-world software development.",
+    img: "/blogs/linkedin-tips.png",
+  },
+  {
+    title: "Build an Azure Blob Trigger Function to Compress Images with Sharp",
+    link: "https://www.c-sharpcorner.com/article/build-an-azure-blob-trigger-function-to-compress-images-with-sharp/",
+    date: "Nov 11, 2024",
+    desc: "Learn how to create an Azure Blob Trigger Function that automatically compresses uploaded images using Sharp.",
+    img: "/blogs/azure-blob.avif",
+  },
+  {
+    title: "Build Microsoft Teams Bot Extension Using TypeScript",
+    link: "https://www.c-sharpcorner.com/article/build-microsoft-teams-bot-extension-using-typescript/",
+    date: "Sep 10, 2024",
+    desc: "Step-by-step guide to building a Microsoft Teams Bot Extension with TypeScript and the Teams Toolkit.",
+    img: "/blogs/teams-bot.png",
+  },
+  {
+    title: "A Step-by-Step Guide to Creating a Chrome Extension with React",
+    link: "https://www.c-sharpcorner.com/article/a-step-by-step-guide-to-creating-a-chrome-extension-with-react/",
+    date: "Jun 09, 2024",
+    desc: "Comprehensive tutorial on building and publishing a Chrome extension using React framework.",
+    img: "/blogs/chrome-extension.png",
+  },
+  {
+    title: "Build Microsoft Teams Tab Extensions with React Fluent UI",
+    link: "https://www.c-sharpcorner.com/article/build-microsoft-teams-tab-extensions-with-react-fluent-ui/",
+    date: "Sep 11, 2024",
+    desc: "Learn how to develop Microsoft Teams Tab Extensions using React with Fluent UI components.",
+    img: "/blogs/teams-tab.png",
+  },
+  {
+    title: "Building Azure HTTP Trigger Function to Generate QR Codes",
+    link: "https://www.c-sharpcorner.com/article/building-azure-http-trigger-function-to-generate-qr-codes-from-post-request-resp/",
+    date: "May 14, 2024",
+    desc: "Build an Azure HTTP Trigger Function that generates QR codes dynamically from POST request responses.",
+    img: "/blogs/azure-qr.png",
+  },
+  {
+    title: "Building an Azure Queue Trigger Function for Sending Emails",
+    link: "https://www.c-sharpcorner.com/article/building-an-azure-queue-trigger-function-for-sending-emails-with-nodemailer/",
+    date: "May 14, 2024",
+    desc: "Send automated emails using Azure Queue Trigger Functions with Nodemailer integration.",
+    img: "/blogs/azure-queue.jpg",
+  },
+  {
+    title: "Microsoft Power Automate for Workflow Efficiency",
+    link: "https://www.c-sharpcorner.com/article/microsoft-power-automate-for-workflow-efficiency/",
+    date: "Jun 11, 2024",
+    desc: "Discover how Microsoft Power Automate streamlines workflows and boosts productivity.",
+    img: "/blogs/power-automate.png",
+  },
+  {
+    title: "useState And useEffect Hooks In React",
+    link: "https://www.c-sharpcorner.com/article/usestate-and-us/",
+    date: "Apr 06, 2023",
+    desc: "Beginner-friendly explanation of React's useState and useEffect hooks with practical examples.",
+    img: "/blogs/react-hooks.png",
+  },
+  {
+    title: "Unit Testing C# With MS Test",
+    link: "https://www.c-sharpcorner.com/article/unit-testing-c-sharp-with-ms-test/",
+    date: "Mar 10, 2023",
+    desc: "Guide to writing unit tests in C# using the MS Test framework for reliable applications.",
+    img: "/blogs/csharp-test.png",
+  },
+];
+---
+
+<section id="blogs" class="py-20 bg-[#0a0a0a]">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 mt-16">
+      <p class="text-[#64ffda] font-medium mb-2">&lt; my blogs /&gt;</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white">Blogs</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogs.map((blog) => <BlogCard {...blog} />)}
+    </div>
+  </div>
+</section>

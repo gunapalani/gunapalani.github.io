@@ -1,0 +1,56 @@
+---
+import CertificationCol from "./CertificationCol.astro";
+---
+
+<section
+  id="certifications"
+  class="py-20 bg-gradient-to-br from-[#0a0a0a] to-[#112240]"
+>
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 mt-16">
+      <p class="text-[#64ffda] font-medium mb-2">
+        &lt; my certifications /&gt;
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white">Certifications</h2>
+    </div>
+
+    <div
+      class="grid grid-cols gap-8 max-md:grid-cols-2 max-sm:grid-cols-1 mx-7 md:mx-32"
+    >
+      <CertificationCol
+        title="Microsoft Certified: Azure Developer Associate (AZ-204)"
+        desc="Validated expertise in designing, building, testing, and maintaining cloud applications and services on Microsoft Azure."
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/C4715472C7A9BDA3?sharingId=C4427C3F12BAF488"
+      />
+
+      <CertificationCol
+        title="Microsoft Certified: Azure AI Engineer Associate (AI-102)"
+        desc="Demonstrates ability to use Azure Cognitive Services, Machine Learning, and Knowledge Mining to build AI solutions."
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/5EDC3BDC6798DD2F?sharingId=C4427C3F12BAF488"
+      />
+
+      <CertificationCol
+        title="Microsoft Certified: Azure Data Scientist Associate (DP-100)"
+        desc="Proves skills in applying data science techniques, training ML models, and deploying solutions on Azure Machine Learning."
+        img="/certification/microsoft.webp"
+        link="https://learn.microsoft.com/api/credentials/share/en-us/gunasekaran-palani/ACE4A998ED7FE7CD?sharingId=C4427C3F12BAF488"
+      />
+
+      <CertificationCol
+        title="Most Valuable Professional (MVP) Award"
+        desc="Recognized by C# Corner for exceptional technical contributions, community leadership, and developer advocacy."
+        img="/certification/csharpcorner.png"
+        link="https://www.c-sharpcorner.com/members/guna-palani"
+      />
+
+      <CertificationCol
+        title="100 Days Python Bootcamp - Beginner to Pro"
+        desc="Comprehensive hands-on training covering Python programming, automation, data science, web development, and APIs."
+        img="/certification/udemy.avif"
+        link="https://www.udemy.com/certificate/UC-62d36430-f887-467e-95e4-d26ab5ff1814/"
+      />
+    </div>
+  </div>
+</section>

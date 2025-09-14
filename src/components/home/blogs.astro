@@ -1,0 +1,50 @@
+---
+import BlogCard from "../blog/BlogCard.astro";
+
+const blogs = [
+  {
+    title: "10 Real-World Tips to Improve Code Quality (That Actually Work)",
+    link: "https://www.linkedin.com/pulse/10-real-world-tips-improve-code-quality-actually-work-palani-5nyje/",
+    date: "July 22, 2025",
+    desc: "Practical tips and strategies for enhancing code quality in real-world software development.",
+    img: "/blogs/linkedin-tips.png",
+  },
+  {
+    title: "Build an Azure Blob Trigger Function to Compress Images with Sharp",
+    link: "https://www.c-sharpcorner.com/article/build-an-azure-blob-trigger-function-to-compress-images-with-sharp/",
+    date: "Nov 11, 2024",
+    desc: "Learn how to create an Azure Blob Trigger Function that automatically compresses uploaded images using Sharp.",
+    img: "/blogs/azure-blob.avif",
+  },
+  {
+    title: "Build Microsoft Teams Bot Extension Using TypeScript",
+    link: "https://www.c-sharpcorner.com/article/build-microsoft-teams-bot-extension-using-typescript/",
+    date: "Sep 10, 2024",
+    desc: "Step-by-step guide to building a Microsoft Teams Bot Extension with TypeScript and the Teams Toolkit.",
+    img: "/blogs/teams-bot.png",
+  },
+];
+---
+
+<section id="blogs" class="py-20 bg-[#0a0a0a]">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-[#64ffda] font-medium mb-2">&lt; my blogs /&gt;</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">Blogs
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogs.map((blog) => <BlogCard {...blog} />)}
+    </div>
+    <div
+      class="flex flex-wrap justify-center gap-4 animate-fade-in mt-10"
+      style="animation-delay: 0.8s"
+    >
+      <a href="/blogs" class="button">View More</a>
+    </div>
+  </div>
+</section>

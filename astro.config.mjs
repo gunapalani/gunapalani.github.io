@@ -1,10 +1,11 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
-// import node from "@astrojs/node";
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://gunapalani.github.io",
-  integrations: [tailwind(), react()],
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });
