@@ -11,11 +11,102 @@ const imgUrl =
 
 <section
   id="home"
-  class="relative min-h-screen flex items-center justify-center"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden"
 >
+  <!-- Animated Developer Background -->
   <div
     class="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] to-[#112240] -z-10"
   >
+    <!-- Floating Code Particles -->
+    <div class="code-particles absolute inset-0">
+      <div class="code-particle" data-code="{ }"></div>
+      <div class="code-particle" data-code="< />"></div>
+      <div class="code-particle" data-code="( )"></div>
+      <div class="code-particle" data-code="[ ]"></div>
+      <div class="code-particle" data-code="=>"></div>
+      <div class="code-particle" data-code="++"></div>
+      <div class="code-particle" data-code="||"></div>
+      <div class="code-particle" data-code="&&"></div>
+      <div class="code-particle" data-code="==="></div>
+      <div class="code-particle" data-code="!=="></div>
+      <div class="code-particle" data-code="async"></div>
+      <div class="code-particle" data-code="await"></div>
+      <div class="code-particle" data-code="const"></div>
+      <div class="code-particle" data-code="let"></div>
+      <div class="code-particle" data-code="function"></div>
+      <div class="code-particle" data-code="return"></div>
+      <div class="code-particle" data-code="if"></div>
+      <div class="code-particle" data-code="else"></div>
+      <div class="code-particle" data-code="for"></div>
+      <div class="code-particle" data-code="while"></div>
+    </div>
+
+    <!-- Binary Rain Effect -->
+    <div class="binary-rain absolute inset-0">
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+      <div class="binary-column"></div>
+    </div>
+
+    <!-- 3D Rotating Code Cube -->
+    <div class="code-cube-container hidden md:block">
+      <div class="code-cube">
+        <div class="cube-face front">
+          <pre>function hello() &#123;
+  return "World!";
+&#125;</pre>
+        </div>
+        <div class="cube-face back">
+          <pre>const data = &#123;
+  name: "Developer",
+  skills: ["JS", "React"]
+&#125;;</pre>
+        </div>
+        <div class="cube-face right">
+          <pre>class Portfolio &#123;
+  constructor() &#123;
+    this.awesome = true;
+  &#125;
+&#125;</pre>
+        </div>
+        <div class="cube-face left">
+          <pre>async function build() &#123;
+  await deploy();
+  console.log("Live!");
+&#125;</pre>
+        </div>
+        <div class="cube-face top">
+          <pre>if (coding) &#123;
+  dreams.push("reality");
+  return success;
+&#125;</pre>
+        </div>
+        <div class="cube-face bottom">
+          <pre>const skills = [
+  "Frontend", "Backend",
+  "Mobile", "Cloud"
+];</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Geometric Patterns -->
+    <div class="geometric-bg absolute inset-0">
+      <div class="geo-shape geo-triangle"></div>
+      <div class="geo-shape geo-circle"></div>
+      <div class="geo-shape geo-square"></div>
+      <div class="geo-shape geo-triangle-2"></div>
+      <div class="geo-shape geo-circle-2"></div>
+    </div>
+
+    <!-- Interactive Console Commands -->
   </div>
   <div class="container mt-20 md:m-0 mx-auto px-6">
     <div class="md:flex">
@@ -24,10 +115,10 @@ const imgUrl =
           Hi, my name is
         </p>
         <h1
-          class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in"
+          class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in name-with-cursor"
           style="animation-delay: 0.2s"
         >
-          Gunasekaran Palani
+          Gunasekaran Palani<span class="name-cursor">|</span>
         </h1>
         <div
           class="max-md:text-xl text-2xl font-semibold typewriter text-[#64ffda] mb-4"
@@ -121,13 +212,31 @@ const imgUrl =
         </div>
       </div>
 
-      <div class="mt-12">
+      <!-- <div class="mt-12">
         <img
           src={imgUrl}
           alt="Gunasekaran Palani"
           class="w-48 h-48 md:w-80 md:h-80 rounded-full mx-auto border-4 border-[#64ffda] shadow-lg animate-fade-in"
           style="animation-delay: 1.2s"
         />
+      </div> -->
+      <div class="interactive-console mt-5 ">
+        <div class="console-header">
+          <div class="console-controls">
+            <div class="console-btn close"></div>
+            <div class="console-btn minimize"></div>
+            <div class="console-btn maximize"></div>
+          </div>
+          <div class="console-title">terminal — gunapalani@portfolio</div>
+        </div>
+        <div class="console-body">
+          <div class="console-line" id="console-output">
+            <span class="prompt">gunapalani@portfolio:~$</span>
+            <span class="command" id="current-command"></span>
+            <span class="cursor-blink">_</span>
+          </div>
+          <div class="console-result" id="command-result"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -164,6 +273,601 @@ const imgUrl =
     }
     50% {
       border-color: #64ffda;
+    }
+  }
+
+  /* Name cursor blinking effect */
+  .name-cursor {
+    color: #64ffda;
+    animation: blink-name-cursor 1s infinite;
+    font-weight: normal;
+    margin-left: 2px;
+  }
+
+  @keyframes blink-name-cursor {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Developer Background Animations */
+
+  /* Code Particles */
+  .code-particles {
+    pointer-events: none;
+  }
+
+  .code-particle {
+    position: absolute;
+    color: rgba(100, 255, 218, 0.1);
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    font-weight: bold;
+    animation: float-code 15s infinite linear;
+  }
+
+  .code-particle::before {
+    content: attr(data-code);
+  }
+
+  .code-particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 20s;
+  }
+  .code-particle:nth-child(2) {
+    left: 20%;
+    animation-delay: -2s;
+    animation-duration: 18s;
+  }
+  .code-particle:nth-child(3) {
+    left: 30%;
+    animation-delay: -4s;
+    animation-duration: 22s;
+  }
+  .code-particle:nth-child(4) {
+    left: 40%;
+    animation-delay: -6s;
+    animation-duration: 16s;
+  }
+  .code-particle:nth-child(5) {
+    left: 50%;
+    animation-delay: -8s;
+    animation-duration: 19s;
+  }
+  .code-particle:nth-child(6) {
+    left: 60%;
+    animation-delay: -10s;
+    animation-duration: 21s;
+  }
+  .code-particle:nth-child(7) {
+    left: 70%;
+    animation-delay: -12s;
+    animation-duration: 17s;
+  }
+  .code-particle:nth-child(8) {
+    left: 80%;
+    animation-delay: -14s;
+    animation-duration: 23s;
+  }
+  .code-particle:nth-child(9) {
+    left: 15%;
+    animation-delay: -16s;
+    animation-duration: 15s;
+  }
+  .code-particle:nth-child(10) {
+    left: 25%;
+    animation-delay: -18s;
+    animation-duration: 20s;
+  }
+  .code-particle:nth-child(11) {
+    left: 35%;
+    animation-delay: -1s;
+    animation-duration: 24s;
+  }
+  .code-particle:nth-child(12) {
+    left: 45%;
+    animation-delay: -3s;
+    animation-duration: 16s;
+  }
+  .code-particle:nth-child(13) {
+    left: 55%;
+    animation-delay: -5s;
+    animation-duration: 18s;
+  }
+  .code-particle:nth-child(14) {
+    left: 65%;
+    animation-delay: -7s;
+    animation-duration: 22s;
+  }
+  .code-particle:nth-child(15) {
+    left: 75%;
+    animation-delay: -9s;
+    animation-duration: 19s;
+  }
+  .code-particle:nth-child(16) {
+    left: 85%;
+    animation-delay: -11s;
+    animation-duration: 21s;
+  }
+  .code-particle:nth-child(17) {
+    left: 12%;
+    animation-delay: -13s;
+    animation-duration: 17s;
+  }
+  .code-particle:nth-child(18) {
+    left: 28%;
+    animation-delay: -15s;
+    animation-duration: 25s;
+  }
+  .code-particle:nth-child(19) {
+    left: 42%;
+    animation-delay: -17s;
+    animation-duration: 14s;
+  }
+  .code-particle:nth-child(20) {
+    left: 58%;
+    animation-delay: -19s;
+    animation-duration: 20s;
+  }
+
+  @keyframes float-code {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Binary Rain Effect */
+  .binary-rain {
+    pointer-events: none;
+    opacity: 0.05;
+  }
+
+  .binary-column {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(100, 255, 218, 0.5),
+      rgba(100, 255, 218, 0.8),
+      rgba(100, 255, 218, 0.5),
+      transparent
+    );
+    animation: binary-fall 3s infinite linear;
+  }
+
+  .binary-column:nth-child(1) {
+    left: 5%;
+    animation-delay: 0s;
+  }
+  .binary-column:nth-child(2) {
+    left: 15%;
+    animation-delay: -0.5s;
+  }
+  .binary-column:nth-child(3) {
+    left: 25%;
+    animation-delay: -1s;
+  }
+  .binary-column:nth-child(4) {
+    left: 35%;
+    animation-delay: -1.5s;
+  }
+  .binary-column:nth-child(5) {
+    left: 45%;
+    animation-delay: -2s;
+  }
+  .binary-column:nth-child(6) {
+    left: 55%;
+    animation-delay: -2.5s;
+  }
+  .binary-column:nth-child(7) {
+    left: 65%;
+    animation-delay: -1.2s;
+  }
+  .binary-column:nth-child(8) {
+    left: 75%;
+    animation-delay: -1.8s;
+  }
+  .binary-column:nth-child(9) {
+    left: 85%;
+    animation-delay: -0.8s;
+  }
+  .binary-column:nth-child(10) {
+    left: 95%;
+    animation-delay: -2.2s;
+  }
+
+  @keyframes binary-fall {
+    0% {
+      transform: translateY(-100%);
+      height: 0%;
+    }
+    50% {
+      height: 100%;
+    }
+    100% {
+      transform: translateY(100%);
+      height: 0%;
+    }
+  }
+
+  /* Geometric Patterns */
+  .geometric-bg {
+    pointer-events: none;
+    opacity: 0.05;
+  }
+
+  .geo-shape {
+    position: absolute;
+    border: 2px solid #64ffda;
+    animation: geo-rotate 30s infinite linear;
+  }
+
+  .geo-triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid rgba(100, 255, 218, 0.1);
+    border: none;
+    top: 15%;
+    right: 10%;
+    animation: geo-float 25s infinite ease-in-out;
+  }
+
+  .geo-triangle::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid rgba(100, 255, 218, 0.1);
+  }
+
+  .geo-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 70%;
+    left: 15%;
+    animation: geo-pulse 20s infinite ease-in-out;
+  }
+
+  .geo-square {
+    width: 60px;
+    height: 60px;
+    top: 25%;
+    left: 75%;
+    animation: geo-rotate 35s infinite linear reverse;
+  }
+
+  .geo-triangle-2 {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 60px solid rgba(100, 255, 218, 0.08);
+    border-bottom: none;
+    top: 60%;
+    right: 20%;
+    animation: geo-float 28s infinite ease-in-out reverse;
+  }
+
+  .geo-circle-2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    top: 40%;
+    left: 5%;
+    animation: geo-pulse 22s infinite ease-in-out reverse;
+  }
+
+  @keyframes geo-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes geo-float {
+    0%,
+    100% {
+      transform: translateY(0px) scale(1);
+    }
+    50% {
+      transform: translateY(-30px) scale(1.1);
+    }
+  }
+
+  @keyframes geo-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.05;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.15;
+    }
+  }
+
+  /* 3D Rotating Code Cube Styles */
+  .code-cube-container {
+    position: absolute;
+    top: 85%;
+    right: 0%;
+    transform: translateY(-50%);
+    perspective: 1000px;
+    z-index: 1;
+  }
+
+  .code-cube {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: cube-rotate 20s infinite linear;
+  }
+
+  .cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(17, 34, 64, 0.8);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    color: #64ffda;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .cube-face pre {
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .cube-face.front {
+    transform: translateZ(100px);
+  }
+
+  .cube-face.back {
+    transform: translateZ(-100px) rotateY(180deg);
+  }
+
+  .cube-face.right {
+    transform: rotateY(90deg) translateZ(100px);
+  }
+
+  .cube-face.left {
+    transform: rotateY(-90deg) translateZ(100px);
+  }
+
+  .cube-face.top {
+    transform: rotateX(90deg) translateZ(100px);
+  }
+
+  .cube-face.bottom {
+    transform: rotateX(-90deg) translateZ(100px);
+  }
+
+  @keyframes cube-rotate {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    25% {
+      transform: rotateX(90deg) rotateY(0deg);
+    }
+    50% {
+      transform: rotateX(90deg) rotateY(90deg);
+    }
+    75% {
+      transform: rotateX(0deg) rotateY(90deg);
+    }
+    100% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+  }
+
+  /* Interactive Console Styles */
+  .interactive-console {
+    bottom: 20px;
+    left: 20px;
+    width: 400px;
+    max-width: 90vw;
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    font-family: "Courier New", monospace;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .console-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 7px 7px 0 0;
+  }
+
+  .console-controls {
+    display: flex;
+    gap: 6px;
+  }
+
+  .console-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .console-btn.close {
+    background: #ff5f57;
+  }
+
+  .console-btn.minimize {
+    background: #ffbd2e;
+  }
+
+  .console-btn.maximize {
+    background: #28ca42;
+  }
+
+  .console-title {
+    color: #8b949e;
+    font-size: 12px;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .console-body {
+    padding: 12px;
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .console-line {
+    color: #64ffda;
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+  }
+
+  .prompt {
+    color: #58a6ff;
+    margin-right: 8px;
+  }
+
+  .command {
+    color: #f0f6fc;
+    margin-right: 4px;
+  }
+
+  .cursor-blink {
+    color: #64ffda;
+    animation: blink 1s infinite;
+  }
+
+  .console-result {
+    color: #7d8590;
+    font-size: 13px;
+    margin-left: 20px;
+    white-space: pre-line;
+    margin-bottom: 8px;
+  }
+
+  .console-result.success {
+    color: #3fb950;
+  }
+
+  .console-result.info {
+    color: #58a6ff;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .code-particle {
+      font-size: 12px;
+    }
+    .geo-shape {
+      transform: scale(0.7);
+    }
+    .code-cube-container {
+      right: 5%;
+      top: 20%;
+      transform: scale(0.6);
+    }
+    .code-cube {
+      width: 150px;
+      height: 150px;
+    }
+    .cube-face {
+      width: 150px;
+      height: 150px;
+      font-size: 8px;
+      padding: 8px;
+    }
+    .cube-face.front {
+      transform: translateZ(75px);
+    }
+    .cube-face.back {
+      transform: translateZ(-75px) rotateY(180deg);
+    }
+    .cube-face.right {
+      transform: rotateY(90deg) translateZ(75px);
+    }
+    .cube-face.left {
+      transform: rotateY(-90deg) translateZ(75px);
+    }
+    .cube-face.top {
+      transform: rotateX(90deg) translateZ(75px);
+    }
+    .cube-face.bottom {
+      transform: rotateX(-90deg) translateZ(75px);
+    }
+    .interactive-console {
+      width: 320px;
+      bottom: 10px;
+      left: 10px;
+    }
+    .console-body {
+      padding: 8px;
+      min-height: 80px;
+    }
+    .console-line {
+      font-size: 12px;
+    }
+    .console-result {
+      font-size: 11px;
     }
   }
 </style>
@@ -222,5 +926,177 @@ const imgUrl =
         new TxtType(elements[i], JSON.parse(toRotate), period);
       }
     }
+
+    // Enhanced GSAP animations for developer background
+    if (typeof gsap !== "undefined") {
+      // Create floating particles effect
+      gsap.utils.toArray(".code-particle").forEach((particle, i) => {
+        gsap.set(particle, {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+        });
+
+        gsap.to(particle, {
+          y: "-=100vh",
+          x: `+=${(Math.random() - 0.5) * 200}`,
+          rotation: 360,
+          duration: Math.random() * 15 + 10,
+          repeat: -1,
+          ease: "none",
+          delay: Math.random() * 5,
+        });
+      });
+
+      // Cursor follower effect
+      let cursor = document.createElement("div");
+      cursor.className = "cursor-trail";
+      cursor.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, rgba(100,255,218,0.3), transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1000;
+        mix-blend-mode: screen;
+      `;
+      document.body.appendChild(cursor);
+
+      document.addEventListener("mousemove", (e) => {
+        gsap.to(cursor, {
+          x: e.clientX - 10,
+          y: e.clientY - 10,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      // Parallax effect on scroll
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to(".code-particles", {
+        y: "50vh",
+        scrollTrigger: {
+          trigger: "#home",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Terminal cursor effect
+      let terminalCursor = document.createElement("div");
+      terminalCursor.innerHTML = "|";
+      terminalCursor.style.cssText = `
+        position: fixed;
+        color: #64ffda;
+        font-family: monospace;
+        font-size: 18px;
+        animation: blink-caret 0.75s step-end infinite;
+        pointer-events: none;
+        z-index: 1001;
+      `;
+      document.body.appendChild(terminalCursor);
+
+      document.addEventListener("mousemove", (e) => {
+        gsap.to(terminalCursor, {
+          x: e.clientX + 15,
+          y: e.clientY - 10,
+          duration: 0.1,
+          ease: "power2.out",
+        });
+      });
+    }
+
+    // Interactive Console Commands
+    const commands = [
+      {
+        command: "whoami",
+        result: "gunasekaran-palani\nSoftware Engineer & Full-Stack Developer",
+        type: "info",
+      },
+      {
+        command: "ls -la skills/",
+        result:
+          "total 12\ndrwxr-xr-x  JavaScript  React  Node.js\ndrwxr-xr-x  TypeScript  Angular  Vue.js\ndrwxr-xr-x  Python  C#  .NET\ndrwxr-xr-x  AWS  Azure  Docker",
+        type: "success",
+      },
+      {
+        command: "cat experience.txt",
+        result:
+          "💼 3+ years in software development\n🚀 Built 50+ web applications\n☁️ Microsoft Certified Professional\n📱 Mobile & Web specialist",
+        type: "info",
+      },
+      {
+        command: "git status",
+        result:
+          "On branch master\nYour portfolio is up to date with 'origin/master'.\n\nnothing to commit, working tree clean ✅",
+        type: "success",
+      },
+      {
+        command: "npm run build",
+        result:
+          "Building production bundle...\n✅ Compiled successfully in 2.34s\n📦 Bundle size: 245kb\n🚀 Ready to deploy!",
+        type: "success",
+      },
+      {
+        command: "docker ps",
+        result:
+          "CONTAINER ID   IMAGE          STATUS\n1a2b3c4d5e6f   portfolio:v1   Up 2 hours\n7g8h9i0j1k2l   nginx:alpine   Up 2 hours",
+        type: "info",
+      },
+    ];
+
+    let currentCommandIndex = 0;
+
+    function typeCommand(text, callback) {
+      const commandEl = document.getElementById("current-command");
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          commandEl.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 50 + Math.random() * 50);
+        } else {
+          setTimeout(callback, 500);
+        }
+      }
+
+      commandEl.textContent = "";
+      typeChar();
+    }
+
+    function showResult(result, type) {
+      const resultEl = document.getElementById("command-result");
+      resultEl.textContent = result;
+      resultEl.className = `console-result ${type}`;
+
+      setTimeout(() => {
+        resultEl.textContent = "";
+        nextCommand();
+      }, 3000);
+    }
+
+    function nextCommand() {
+      if (currentCommandIndex < commands.length) {
+        const cmd = commands[currentCommandIndex];
+        currentCommandIndex++;
+
+        typeCommand(cmd.command, () => {
+          showResult(cmd.result, cmd.type);
+        });
+      } else {
+        currentCommandIndex = 0;
+        setTimeout(() => {
+          nextCommand();
+        }, 2000);
+      }
+    }
+
+    // Start the interactive console after a delay
+    setTimeout(() => {
+      nextCommand();
+    }, 3000);
   };
 </script>

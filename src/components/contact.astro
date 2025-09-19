@@ -8,28 +8,20 @@
 >
   <div class="container mx-auto px-6">
     <!-- Heading -->
-    <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+    <div class="text-center mb-16 contact-header">
       <p class="text-[#64ffda] font-medium mb-2">&lt; say hello /&gt;</p>
-      <h2
-        class="text-3xl md:text-4xl font-bold text-white mb-4 relative inline-block"
-      >
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 relative inline-block">
         Get In Touch
-        <span
-          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
-        ></span>
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full contact-underline"></span>
       </h2>
-      <p class="text-gray-400 max-w-xl mx-auto">
+      <p class="text-gray-400 max-w-xl mx-auto contact-description">
         I'm currently open to new opportunities. Whether you have a question or
         just want to say hi, I'll try my best to get back to you!
       </p>
     </div>
 
     <!-- Contact Form -->
-    <div
-      class="max-w-xl mx-auto bg-[#112240]/60 backdrop-blur-md p-8 rounded-xl shadow-lg"
-      data-aos="zoom-in-up"
-      data-aos-duration="1200"
-    >
+    <div class="max-w-xl mx-auto bg-[#112240]/60 backdrop-blur-md p-8 rounded-xl shadow-lg contact-form">
       <form onsubmit="handleSubmit(event)">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-300 mb-2"
@@ -158,3 +150,113 @@
     }
   </script>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      // Animate contact header
+      gsap.fromTo('.contact-header', 
+        { opacity: 0, y: 50 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.contact-header',
+            start: 'top 80%',
+          }
+        }
+      );
+      
+      // Animate underline
+      gsap.fromTo('.contact-underline',
+        { width: 0 },
+        {
+          width: '4rem',
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.contact-underline',
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Animate description
+      gsap.fromTo('.contact-description',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.contact-description',
+            start: 'top 85%',
+          }
+        }
+      );
+
+      // Animate contact form
+      gsap.fromTo('.contact-form',
+        { 
+          opacity: 0, 
+          scale: 0.9,
+          y: 50 
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: '.contact-form',
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Add focus animations to form inputs
+      const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          gsap.to(input, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+        
+        input.addEventListener('blur', () => {
+          gsap.to(input, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      // Add button hover animation
+      const submitButton = document.querySelector('.contact-form button[type="submit"]');
+      if (submitButton) {
+        submitButton.addEventListener('mouseenter', () => {
+          gsap.to(submitButton, {
+            scale: 1.05,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+        
+        submitButton.addEventListener('mouseleave', () => {
+          gsap.to(submitButton, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      }
+    }
+  });
+</script>

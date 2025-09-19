@@ -7,21 +7,17 @@ import CertificationCol from "../certification/CertificationCol.astro";
   class="py-20 bg-gradient-to-br from-[#0a0a0a] to-[#112240]"
 >
   <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 certifications-header">
       <p class="text-[#64ffda] font-medium mb-2">
         &lt; my certifications /&gt;
       </p>
       <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
         Certifications
-        <span
-          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full"
-        ></span>
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full certifications-underline"></span>
       </h2>
     </div>
 
-    <div
-      class="grid grid-cols-2 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1 mx-7 md:mx-32"
-    >
+    <div class="grid grid-cols-2 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1 mx-7 md:mx-32 certifications-grid">
       <CertificationCol
         title="Microsoft Certified: Azure Developer Associate"
         desc="Exam AZ-204"
@@ -47,11 +43,79 @@ import CertificationCol from "../certification/CertificationCol.astro";
         link="https://www.c-sharpcorner.com/members/guna-palani"
       />
     </div>
-    <div
-      class="flex flex-wrap justify-center gap-4 animate-fade-in mt-10"
-      style="animation-delay: 0.8s"
-    >
+    <div class="flex flex-wrap justify-center gap-4 mt-10 certifications-button">
       <a href="/certification" class="button">View More</a>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      // Animate certifications header
+      gsap.fromTo('.certifications-header', 
+        { opacity: 0, y: 50 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.certifications-header',
+            start: 'top 80%',
+          }
+        }
+      );
+      
+      // Animate underline
+      gsap.fromTo('.certifications-underline',
+        { width: 0 },
+        {
+          width: '4rem',
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.certifications-underline',
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Animate certifications grid
+      gsap.fromTo('.certifications-grid > *',
+        { 
+          opacity: 0, 
+          y: 50, 
+          scale: 0.9 
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: '.certifications-grid',
+            start: 'top 85%',
+          }
+        }
+      );
+
+      // Animate button
+      gsap.fromTo('.certifications-button',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.certifications-button',
+            start: 'top 90%',
+          }
+        }
+      );
+    }
+  });
+</script>

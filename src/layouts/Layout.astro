@@ -66,6 +66,10 @@ import "../styles/global.css";
 
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
   </head>
 
   <body>
@@ -74,6 +78,10 @@ import "../styles/global.css";
   <script src="https://unpkg.com/aos@next/dist/aos.js" is:inline></script>
   <script is:inline>
     AOS.init();
+    // Register GSAP ScrollTrigger plugin
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
   </script>
 </html>
 
