@@ -1,4 +1,4 @@
--+---
+---
 interface Project {
   title: string;
   description: string;
@@ -90,9 +90,13 @@ const projects: Project[] = [
   <div class="container mx-auto px-6">
     <div class="text-center mb-16 projects-header">
       <p class="text-[#64ffda] font-medium mb-2">&lt; what i've built /&gt;</p>
-      <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-white relative inline-block"
+      >
         Featured Projects
-        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full projects-underline"></span>
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full projects-underline"
+        ></span>
       </h2>
     </div>
 
@@ -116,11 +120,16 @@ const projects: Project[] = [
                 alt={project.title}
                 class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
               />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span class="text-[#64ffda] text-lg font-medium">
-                  <a href={project.live} target="_blank">View Project</a>
-                </span>
-              </div>
+
+              {project.live && (
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <span class="text-[#64ffda] text-lg font-medium">
+                    <a href={project.live} target="_blank">
+                      View Project
+                    </a>
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Project Content */}
@@ -222,110 +231,115 @@ const projects: Project[] = [
 </section>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       // Animate projects header
-      gsap.fromTo('.projects-header', 
+      gsap.fromTo(
+        ".projects-header",
         { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
+        {
+          opacity: 1,
+          y: 0,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.projects-header',
-            start: 'top 80%',
-          }
+            trigger: ".projects-header",
+            start: "top 80%",
+          },
         }
       );
-      
+
       // Animate underline
-      gsap.fromTo('.projects-underline',
+      gsap.fromTo(
+        ".projects-underline",
         { width: 0 },
         {
-          width: '4rem',
+          width: "4rem",
           duration: 0.6,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.projects-underline',
-            start: 'top 80%',
-          }
+            trigger: ".projects-underline",
+            start: "top 80%",
+          },
         }
       );
 
       // Animate each project card
-      gsap.utils.toArray('.project-card').forEach((card, index) => {
+      gsap.utils.toArray(".project-card").forEach((card, index) => {
         const isEven = index % 2 === 0;
-        const image = card.querySelector('.project-image');
-        const content = card.querySelector('.project-content');
-        
+        const image = card.querySelector(".project-image");
+        const content = card.querySelector(".project-content");
+
         // Set initial states
-        gsap.set(image, { 
-          opacity: 0, 
-          x: isEven ? -100 : 100 
+        gsap.set(image, {
+          opacity: 0,
+          x: isEven ? -100 : 100,
         });
-        gsap.set(content, { 
-          opacity: 0, 
-          x: isEven ? 100 : -100 
+        gsap.set(content, {
+          opacity: 0,
+          x: isEven ? 100 : -100,
         });
-        
+
         // Create timeline for each project
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: card,
-            start: 'top 85%',
-          }
+            start: "top 85%",
+          },
         });
-        
+
         tl.to(image, {
           duration: 0.8,
           opacity: 1,
           x: 0,
-          ease: "power2.out"
-        })
-        .to(content, {
-          duration: 0.8,
-          opacity: 1,
-          x: 0,
-          ease: "power2.out"
-        }, "-=0.6");
+          ease: "power2.out",
+        }).to(
+          content,
+          {
+            duration: 0.8,
+            opacity: 1,
+            x: 0,
+            ease: "power2.out",
+          },
+          "-=0.6"
+        );
 
         // Add hover animations
-        card.addEventListener('mouseenter', () => {
+        card.addEventListener("mouseenter", () => {
           gsap.to(card, {
             y: -5,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
-        
-        card.addEventListener('mouseleave', () => {
+
+        card.addEventListener("mouseleave", () => {
           gsap.to(card, {
             y: 0,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
       });
 
       // Animate tech tags on hover
-      gsap.utils.toArray('.project-card').forEach(card => {
-        const techTags = card.querySelectorAll('.project-content span');
-        
-        techTags.forEach(tag => {
-          tag.addEventListener('mouseenter', () => {
+      gsap.utils.toArray(".project-card").forEach((card) => {
+        const techTags = card.querySelectorAll(".project-content span");
+
+        techTags.forEach((tag) => {
+          tag.addEventListener("mouseenter", () => {
             gsap.to(tag, {
               scale: 1.1,
               duration: 0.2,
-              ease: "power2.out"
+              ease: "power2.out",
             });
           });
-          
-          tag.addEventListener('mouseleave', () => {
+
+          tag.addEventListener("mouseleave", () => {
             gsap.to(tag, {
               scale: 1,
               duration: 0.2,
-              ease: "power2.out"
+              ease: "power2.out",
             });
           });
         });
