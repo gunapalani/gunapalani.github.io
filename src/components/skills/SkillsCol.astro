@@ -22,7 +22,6 @@ const { label, percentage, color } = Astro.props;
     overflow: hidden;
   }
 
-  /* Card lift and glow effect */
   .hover-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
@@ -34,7 +33,6 @@ const { label, percentage, color } = Astro.props;
                 rgba(100, 255, 218, 0.03) 100%);
   }
 
-  /* Animated gradient border */
   .hover-card::before {
     content: '';
     position: absolute;
@@ -66,7 +64,6 @@ const { label, percentage, color } = Astro.props;
     }
   }
 
-  /* Enhanced progress bar */
   .percentage-bar {
     width: 0%;
     background: linear-gradient(90deg, 
@@ -79,7 +76,6 @@ const { label, percentage, color } = Astro.props;
     overflow: hidden;
   }
 
-  /* Progress bar shine effect */
   .percentage-bar::after {
     content: '';
     position: absolute;
@@ -98,7 +94,6 @@ const { label, percentage, color } = Astro.props;
     left: 100%;
   }
 
-  /* Icon animations */
   .skill-icon {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
@@ -109,7 +104,6 @@ const { label, percentage, color } = Astro.props;
     filter: drop-shadow(0 0 10px var(--color, #64ffda));
   }
 
-  /* Label glow effect */
   .skill-label {
     transition: all 0.3s ease;
     position: relative;
@@ -121,7 +115,6 @@ const { label, percentage, color } = Astro.props;
                  0 0 20px var(--color, #64ffda);
   }
 
-  /* Floating particles effect */
   .hover-card:hover::after {
     content: '';
     position: absolute;
@@ -151,7 +144,6 @@ const { label, percentage, color } = Astro.props;
     }
   }
 
-  /* Pulse animation for high-skill cards */
   .hover-card[data-percentage*="9"]:not(:hover),
   .hover-card[data-percentage="100%"]:not(:hover) {
     animation: pulse-glow 3s ease-in-out infinite;
@@ -166,7 +158,6 @@ const { label, percentage, color } = Astro.props;
     }
   }
 
-  /* Mobile optimizations */
   @media (max-width: 768px) {
     .hover-card:hover {
       transform: translateY(-4px) scale(1.01);
@@ -182,7 +173,6 @@ const { label, percentage, color } = Astro.props;
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof gsap !== 'undefined') {
       
-      // Set initial state for all cards
       gsap.set('.skill-card', { 
         y: 80, 
         opacity: 0, 
@@ -191,24 +181,20 @@ const { label, percentage, color } = Astro.props;
         visibility: 'hidden'
       });
 
-      // Set initial state for progress bars
       gsap.set('.percentage-bar', { 
         width: '0%'
       });
 
-      // Function to play hover animation effects
       function playHoverEffects(card) {
         const icon = card.querySelector('.skill-icon');
         const progressBar = card.querySelector('.percentage-bar');
         
-        // Card background effects (lift, glow, gradient)
         gsap.to(card, {
           y: -8,
           scale: 1.02,
           duration: 0.4,
           ease: "power2.out",
           onComplete: () => {
-            // Reset card background effects
             gsap.to(card, {
               y: 0,
               scale: 1,
@@ -219,13 +205,11 @@ const { label, percentage, color } = Astro.props;
           }
         });
 
-        // Apply CSS hover styles temporarily
         gsap.set(card, {
           boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 255, 218, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
           background: "linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, rgba(17, 34, 64, 0.95) 50%, rgba(100, 255, 218, 0.03) 100%)"
         });
 
-        // Reset background after animation
         setTimeout(() => {
           gsap.set(card, {
             boxShadow: "none",
@@ -233,7 +217,6 @@ const { label, percentage, color } = Astro.props;
           });
         }, 1000);
 
-        // Border glow effect
         const beforeElement = window.getComputedStyle(card, '::before');
         gsap.to(card, {
           '--border-opacity': 0.7,
@@ -247,14 +230,12 @@ const { label, percentage, color } = Astro.props;
           }
         });
         
-        // Icon animation with bounce and spin
         gsap.to(icon, { 
           scale: 1.15, 
           rotateY: 360,
           duration: 0.6, 
           ease: "back.out(1.7)",
           onComplete: () => {
-            // Reset icon after animation
             gsap.to(icon, { 
               scale: 1, 
               rotateY: 0,
@@ -264,7 +245,6 @@ const { label, percentage, color } = Astro.props;
           }
         });
         
-        // Progress bar pulse effect
         gsap.to(progressBar, {
           scaleY: 1.3,
           duration: 0.25,
@@ -273,7 +253,6 @@ const { label, percentage, color } = Astro.props;
           repeat: 1
         });
 
-        // Progress bar shine effect
         const progressBarAfter = progressBar.querySelector('::after');
         gsap.fromTo(progressBar, 
           { '--shine-position': '-100%' },
@@ -284,11 +263,9 @@ const { label, percentage, color } = Astro.props;
           }
         );
 
-        // Create floating particles
         createParticles(card);
       }
 
-      // Function to enable ongoing hover effects
       function enableHoverEffects(card) {
         card.addEventListener('mouseenter', () => {
           playHoverEffects(card);
@@ -296,7 +273,6 @@ const { label, percentage, color } = Astro.props;
         
         card.addEventListener('mouseleave', () => {
           const icon = card.querySelector('.skill-icon');
-          // Ensure icon returns to normal state on mouse leave
           gsap.to(icon, { 
             scale: 1, 
             rotateY: 0,
@@ -306,7 +282,6 @@ const { label, percentage, color } = Astro.props;
         });
       }
 
-      // Create timeline for sequential card appearance
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '#skills',
@@ -315,9 +290,7 @@ const { label, percentage, color } = Astro.props;
         }
       });
 
-      // Add each card to timeline with sequential delay
       gsap.utils.toArray('.skill-card').forEach((card, index) => {
-        // Card entrance animation
         tl.to(card, {
           y: 0,
           opacity: 1,
@@ -326,31 +299,26 @@ const { label, percentage, color } = Astro.props;
           visibility: 'visible',
           duration: 0.8,
           ease: "back.out(1.5)"
-        }, index * 0.25) // 0.25s delay between each card
+        }, index * 0.25)
         
-        // Add progress bar animation
         .to(card.querySelector('.percentage-bar'), {
           width: card.getAttribute('data-percentage'),
           duration: 0.3,
           ease: "power2.out"
-        }, index * 0.25 + 0.4) // Start progress bar 0.4s after card starts
+        }, index * 0.25 + 0.4)
         
-        // Play initial hover effects after card and progress bar complete
         .call(() => {
-          // Play the hover animation once automatically
           setTimeout(() => {
             playHoverEffects(card);
-          }, 200); // Small delay to ensure progress bar is complete
+          }, 200);
           
-          // Enable ongoing hover effects
           setTimeout(() => {
             enableHoverEffects(card);
             console.log(`Card ${index + 1} hover effects enabled!`);
-          }, 1000); // Enable hover after initial effect completes
-        }, null, index * 0.25 + 0.9); // Trigger after progress bar completes (reduced from 1.4s to 0.9s)
+          }, 1000);
+        }, null, index * 0.25 + 0.9);
       });
 
-      // Function to create floating particles
       function createParticles(card) {
         const rect = card.getBoundingClientRect();
         const color = card.getAttribute('data-color');
