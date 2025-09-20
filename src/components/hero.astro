@@ -212,15 +212,16 @@ const imgUrl =
         </div>
       </div>
 
-      <div class="mt-12 hidden">
+      <div class="mt-12" id="profile-image-container">
         <img
           src={imgUrl}
           alt="Gunasekaran Palani"
           class="w-48 h-48 md:w-80 md:h-80 rounded-full mx-auto border-4 border-[#64ffda] shadow-lg animate-fade-in"
           style="animation-delay: 1.2s"
+          id="profile-image"
         />
       </div>
-      <div class="interactive-console mt-5 ">
+      <div class="interactive-console mt-5 hidden" id="terminal-container">
         <div class="console-header">
           <div class="console-controls">
             <div class="console-btn close"></div>
@@ -728,25 +729,38 @@ const imgUrl =
 
   .console-controls {
     display: flex;
-    gap: 6px;
+    gap: 8px;
+    align-items: center;
   }
 
   .console-btn {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .console-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
 
   .console-btn.close {
     background: #ff5f57;
+    border-color: #ff5f57;
   }
 
   .console-btn.minimize {
     background: #ffbd2e;
+    border-color: #ffbd2e;
   }
 
   .console-btn.maximize {
     background: #28ca42;
+    border-color: #28ca42;
   }
 
   .console-title {
@@ -926,6 +940,57 @@ const imgUrl =
         new TxtType(elements[i], JSON.parse(toRotate), period);
       }
     }
+
+    // Image to Terminal Transition
+    setTimeout(() => {
+      const imageContainer = document.getElementById("profile-image-container");
+      const terminalContainer = document.getElementById("terminal-container");
+
+      if (imageContainer && terminalContainer) {
+        // Hide image with animation
+        if (typeof gsap !== "undefined") {
+          gsap.to(imageContainer, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+              imageContainer.classList.add("hidden");
+
+              // Show terminal
+              terminalContainer.classList.remove("hidden");
+
+              gsap.fromTo(
+                terminalContainer,
+                { opacity: 0, y: 30 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 1,
+                  ease: "back.out(1.7)",
+                  onComplete: () => {
+                    // Start terminal commands
+                    setTimeout(() => {
+                      nextCommand();
+                    }, 500);
+                  },
+                }
+              );
+            },
+          });
+        } else {
+          // Fallback without GSAP
+          setTimeout(() => {
+            imageContainer.classList.add("hidden");
+            terminalContainer.classList.remove("hidden");
+            
+            setTimeout(() => {
+              nextCommand();
+            }, 500);
+          }, 1000);
+        }
+      }
+    }, 5000);
 
     // Enhanced GSAP animations for developer background
     if (typeof gsap !== "undefined") {
