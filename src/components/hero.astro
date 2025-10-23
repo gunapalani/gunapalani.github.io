@@ -941,6 +941,99 @@ const imgUrl =
       }
     }
 
+    // Interactive Console Commands - Define these first
+    const commands = [
+      {
+        command: "whoami",
+        result: "gunasekaran-palani\nSoftware Engineer & Full-Stack Developer",
+        type: "info",
+      },
+      {
+        command: "ls -la skills/",
+        result:
+          "total 12\ndrwxr-xr-x  JavaScript  React  Node.js\ndrwxr-xr-x  TypeScript  Angular  Vue.js\ndrwxr-xr-x  Python  C#  .NET\ndrwxr-xr-x  AWS  Azure  Docker",
+        type: "success",
+      },
+      {
+        command: "cat experience.txt",
+        result:
+          "💼 3+ years in software development\n🚀 Built 50+ web applications\n☁️ Microsoft Certified Professional\n📱 Mobile & Web specialist",
+        type: "info",
+      },
+      {
+        command: "git status",
+        result:
+          "On branch master\nYour portfolio is up to date with 'origin/master'.\n\nnothing to commit, working tree clean ✅",
+        type: "success",
+      },
+      {
+        command: "npm run build",
+        result:
+          "Building production bundle...\n✅ Compiled successfully in 2.34s\n📦 Bundle size: 245kb\n🚀 Ready to deploy!",
+        type: "success",
+      },
+      {
+        command: "docker ps",
+        result:
+          "CONTAINER ID   IMAGE          STATUS\n1a2b3c4d5e6f   portfolio:v1   Up 2 hours\n7g8h9i0j1k2l   nginx:alpine   Up 2 hours",
+        type: "info",
+      },
+    ];
+
+    let currentCommandIndex = 0;
+    let terminalReady = false;
+
+    function typeCommand(text, callback) {
+      const commandEl = document.getElementById("current-command");
+      if (!commandEl) return;
+      
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          commandEl.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 50 + Math.random() * 50);
+        } else {
+          setTimeout(callback, 500);
+        }
+      }
+
+      commandEl.textContent = "";
+      typeChar();
+    }
+
+    function showResult(result, type) {
+      const resultEl = document.getElementById("command-result");
+      if (!resultEl) return;
+      
+      resultEl.textContent = result;
+      resultEl.className = `console-result ${type}`;
+
+      setTimeout(() => {
+        resultEl.textContent = "";
+        nextCommand();
+      }, 3000);
+    }
+
+    function nextCommand() {
+      if (!terminalReady) return;
+      
+      if (currentCommandIndex < commands.length) {
+        const cmd = commands[currentCommandIndex];
+        currentCommandIndex++;
+
+        typeCommand(cmd.command, () => {
+          showResult(cmd.result, cmd.type);
+        });
+      } else {
+        currentCommandIndex = 0;
+        setTimeout(() => {
+          nextCommand();
+        }, 2000);
+      }
+    }
+
     // Image to Terminal Transition
     setTimeout(() => {
       const imageContainer = document.getElementById("profile-image-container");
@@ -948,7 +1041,7 @@ const imgUrl =
 
       if (imageContainer && terminalContainer) {
         // Hide image with animation
-        if (typeof gsap !== "undefined") {
+        if (typeof gsap !== "undefined" && typeof gsap.to === "function") {
           gsap.to(imageContainer, {
             opacity: 0,
             scale: 0.8,
@@ -969,7 +1062,8 @@ const imgUrl =
                   duration: 1,
                   ease: "back.out(1.7)",
                   onComplete: () => {
-                    // Start terminal commands
+                    // Enable terminal and start commands
+                    terminalReady = true;
                     setTimeout(() => {
                       nextCommand();
                     }, 500);
@@ -980,17 +1074,30 @@ const imgUrl =
           });
         } else {
           // Fallback without GSAP
+          imageContainer.style.transition = "opacity 1s, transform 1s";
+          imageContainer.style.opacity = "0";
+          imageContainer.style.transform = "scale(0.8)";
+          
           setTimeout(() => {
             imageContainer.classList.add("hidden");
             terminalContainer.classList.remove("hidden");
+            terminalContainer.style.opacity = "0";
+            terminalContainer.style.transform = "translateY(30px)";
+            terminalContainer.style.transition = "opacity 1s, transform 1s";
             
             setTimeout(() => {
-              nextCommand();
-            }, 500);
-          }, 1500);
+              terminalContainer.style.opacity = "1";
+              terminalContainer.style.transform = "translateY(0)";
+              
+              setTimeout(() => {
+                terminalReady = true;
+                nextCommand();
+              }, 1000);
+            }, 50);
+          }, 1000);
         }
       }
-    }, 1000);
+    }, 3000);
 
     // Enhanced GSAP animations for developer background
     if (typeof gsap !== "undefined") {
@@ -1072,96 +1179,5 @@ const imgUrl =
         });
       });
     }
-
-    // Interactive Console Commands
-    const commands = [
-      {
-        command: "whoami",
-        result: "gunasekaran-palani\nSoftware Engineer & Full-Stack Developer",
-        type: "info",
-      },
-      {
-        command: "ls -la skills/",
-        result:
-          "total 12\ndrwxr-xr-x  JavaScript  React  Node.js\ndrwxr-xr-x  TypeScript  Angular  Vue.js\ndrwxr-xr-x  Python  C#  .NET\ndrwxr-xr-x  AWS  Azure  Docker",
-        type: "success",
-      },
-      {
-        command: "cat experience.txt",
-        result:
-          "💼 3+ years in software development\n🚀 Built 50+ web applications\n☁️ Microsoft Certified Professional\n📱 Mobile & Web specialist",
-        type: "info",
-      },
-      {
-        command: "git status",
-        result:
-          "On branch master\nYour portfolio is up to date with 'origin/master'.\n\nnothing to commit, working tree clean ✅",
-        type: "success",
-      },
-      {
-        command: "npm run build",
-        result:
-          "Building production bundle...\n✅ Compiled successfully in 2.34s\n📦 Bundle size: 245kb\n🚀 Ready to deploy!",
-        type: "success",
-      },
-      {
-        command: "docker ps",
-        result:
-          "CONTAINER ID   IMAGE          STATUS\n1a2b3c4d5e6f   portfolio:v1   Up 2 hours\n7g8h9i0j1k2l   nginx:alpine   Up 2 hours",
-        type: "info",
-      },
-    ];
-
-    let currentCommandIndex = 0;
-
-    function typeCommand(text, callback) {
-      const commandEl = document.getElementById("current-command");
-      let i = 0;
-
-      function typeChar() {
-        if (i < text.length) {
-          commandEl.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeChar, 50 + Math.random() * 50);
-        } else {
-          setTimeout(callback, 500);
-        }
-      }
-
-      commandEl.textContent = "";
-      typeChar();
-    }
-
-    function showResult(result, type) {
-      const resultEl = document.getElementById("command-result");
-      resultEl.textContent = result;
-      resultEl.className = `console-result ${type}`;
-
-      setTimeout(() => {
-        resultEl.textContent = "";
-        nextCommand();
-      }, 3000);
-    }
-
-    function nextCommand() {
-      if (currentCommandIndex < commands.length) {
-        const cmd = commands[currentCommandIndex];
-        currentCommandIndex++;
-
-        typeCommand(cmd.command, () => {
-          showResult(cmd.result, cmd.type);
-        });
-      } else {
-        currentCommandIndex = 0;
-        setTimeout(() => {
-          nextCommand();
-        }, 2000);
-      }
-    }
-
-    // Start the interactive console after a delay
-    setTimeout(() => {
-      nextCommand();
-    }, 3000);
   };
 </script>
