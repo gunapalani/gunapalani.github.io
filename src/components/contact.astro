@@ -10,9 +10,13 @@
     <!-- Heading -->
     <div class="text-center mb-16 contact-header">
       <p class="text-[#64ffda] font-medium mb-2">&lt; say hello /&gt;</p>
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 relative inline-block">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-white mb-4 relative inline-block"
+      >
         Get In Touch
-        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full contact-underline"></span>
+        <span
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#64ffda] rounded-full contact-underline"
+        ></span>
       </h2>
       <p class="text-gray-400 max-w-xl mx-auto contact-description">
         I'm currently open to new opportunities. Whether you have a question or
@@ -21,8 +25,10 @@
     </div>
 
     <!-- Contact Form -->
-    <div class="max-w-xl mx-auto bg-[#112240]/60 backdrop-blur-md p-8 rounded-xl shadow-lg contact-form">
-      <form onsubmit="handleSubmit(event)">
+    <div
+      class="max-w-xl mx-auto bg-[#112240]/60 backdrop-blur-md p-8 rounded-xl shadow-lg contact-form"
+    >
+      <form id="contact-form-element">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-300 mb-2"
             >Name</label
@@ -91,6 +97,16 @@
         </button>
       </form>
 
+      <!-- Success Message -->
+      <div id="success-message" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">✨</div>
+        <h3 class="text-2xl font-bold text-[#64ffda] mb-3">Thank You!</h3>
+        <p class="text-gray-300 mb-2">
+          Your message has been sent successfully.
+        </p>
+        <p class="text-gray-400">I'll get back to you as soon as possible!</p>
+      </div>
+
       <!-- Contact Info -->
       <div class="mt-12 space-y-4" data-aos="fade-up" data-aos-duration="1200">
         <div class="flex items-center gap-4">
@@ -139,52 +155,77 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function handleSubmit(event: any) {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const data = Object.fromEntries(formData);
-      console.log("Form data:", data);
-      alert("✅ Message Sent! I'll get back to you soon.");
-    }
-  </script>
 </section>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  document.addEventListener("DOMContentLoaded", function () {
+    // EmailJS form submission
+    const contactForm = document.querySelector(".contact-form form");
+    const successMessage = document.getElementById("success-message");
+    if (contactForm && typeof emailjs !== "undefined") {
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Send form using EmailJS
+        emailjs.sendForm("service_0kjtrod", "template_wrgb8qu", this).then(
+          () => {
+            console.log("SUCCESS!");
+            // Hide form and show success message
+            contactForm.classList.add("hidden");
+            successMessage.classList.remove("hidden");
+            
+            // Optional: Fade in success message with animation
+            if (typeof gsap !== "undefined") {
+              gsap.fromTo(
+                successMessage,
+                { opacity: 0, scale: 0.9 },
+                { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+              );
+            }
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            alert(
+              "❌ Failed to send message. Please try again or email directly."
+            );
+          }
+        );
+      });
+    }
+
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       // Animate contact header
-      gsap.fromTo('.contact-header', 
+      gsap.fromTo(
+        ".contact-header",
         { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
+        {
+          opacity: 1,
+          y: 0,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.contact-header',
-            start: 'top 80%',
-          }
+            trigger: ".contact-header",
+            start: "top 80%",
+          },
         }
-      );
-      
-      // Animate underline
-      gsap.fromTo('.contact-underline',
+      ); // Animate underline
+      gsap.fromTo(
+        ".contact-underline",
         { width: 0 },
         {
-          width: '4rem',
+          width: "4rem",
           duration: 0.6,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.contact-underline',
-            start: 'top 80%',
-          }
+            trigger: ".contact-underline",
+            start: "top 80%",
+          },
         }
       );
 
       // Animate description
-      gsap.fromTo('.contact-description',
+      gsap.fromTo(
+        ".contact-description",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
@@ -192,18 +233,19 @@
           duration: 0.6,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.contact-description',
-            start: 'top 85%',
-          }
+            trigger: ".contact-description",
+            start: "top 85%",
+          },
         }
       );
 
       // Animate contact form
-      gsap.fromTo('.contact-form',
-        { 
-          opacity: 0, 
+      gsap.fromTo(
+        ".contact-form",
+        {
+          opacity: 0,
           scale: 0.9,
-          y: 50 
+          y: 50,
         },
         {
           opacity: 1,
@@ -212,48 +254,52 @@
           duration: 0.8,
           ease: "back.out(1.7)",
           scrollTrigger: {
-            trigger: '.contact-form',
-            start: 'top 80%',
-          }
+            trigger: ".contact-form",
+            start: "top 80%",
+          },
         }
       );
 
       // Add focus animations to form inputs
-      const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
-      inputs.forEach(input => {
-        input.addEventListener('focus', () => {
+      const inputs = document.querySelectorAll(
+        ".contact-form input, .contact-form textarea"
+      );
+      inputs.forEach((input) => {
+        input.addEventListener("focus", () => {
           gsap.to(input, {
             scale: 1.02,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
-        
-        input.addEventListener('blur', () => {
+
+        input.addEventListener("blur", () => {
           gsap.to(input, {
             scale: 1,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
       });
 
       // Add button hover animation
-      const submitButton = document.querySelector('.contact-form button[type="submit"]');
+      const submitButton = document.querySelector(
+        '.contact-form button[type="submit"]'
+      );
       if (submitButton) {
-        submitButton.addEventListener('mouseenter', () => {
+        submitButton.addEventListener("mouseenter", () => {
           gsap.to(submitButton, {
             scale: 1.05,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
-        
-        submitButton.addEventListener('mouseleave', () => {
+
+        submitButton.addEventListener("mouseleave", () => {
           gsap.to(submitButton, {
             scale: 1,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
       }
