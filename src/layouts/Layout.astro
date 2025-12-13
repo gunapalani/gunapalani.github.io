@@ -88,6 +88,18 @@ import "../styles/global.css";
   </head>
 
   <body>
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#64ffda] to-[#52e0c4] w-0 z-50"></div>
+    
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-[#64ffda] text-[#0a0a0a] rounded-full shadow-lg opacity-0 invisible transition-all duration-300 flex items-center justify-center font-bold text-xl hover:bg-[#52e0c4] hover:scale-110 z-40"
+      aria-label="Back to top"
+    >
+      ↑
+    </button>
+
     <slot />
   </body>
   <script src="https://unpkg.com/aos@next/dist/aos.js" is:inline></script>
@@ -97,6 +109,44 @@ import "../styles/global.css";
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
     }
+
+    // Scroll Progress Indicator
+    const progressBar = document.getElementById('scroll-progress');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      // Calculate scroll progress
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+
+      // Show/hide back-to-top button
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+        backToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+        backToTopBtn.classList.remove('opacity-100', 'visible');
+      }
+    });
+
+    // Back to Top Button Click
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Keyboard shortcut (Home key)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
   </script>
 </html>
 
