@@ -25,10 +25,12 @@
       <!-- GitHub Stats Card -->
       <div class="github-card" data-aos="fade-up" data-aos-duration="800">
         <img
-          src="https://github-readme-stats.vercel.app/api?username=gunapalani&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&icon_color=64ffda&border_color=233554&hide_border=false&card_width=400"
+          id="github-stats-img"
+          src="https://github-readme-stats.vercel.app/api?username=gunapalani&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&icon_color=64ffda&border_color=233554&hide_border=false&card_width=400&cache_seconds=86400"
           alt="GitHub Stats"
-          class="w-full rounded-lg border border-[#233554] hover:border-[#64ffda] transition-colors duration-300"
+          class="w-full rounded-lg border border-[#233554] hover:border-[#64ffda] transition-colors duration-300 stats-img"
           loading="lazy"
+          onerror="this.onerror=null; this.src='https://github-readme-stats-sigma-five.vercel.app/api?username=gunapalani&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&icon_color=64ffda&border_color=233554&hide_border=false&card_width=400';"
         />
       </div>
 
@@ -39,10 +41,12 @@
         data-aos-delay="100"
       >
         <img
-          src="https://github-readme-stats.vercel.app/api/top-langs/?username=gunapalani&layout=compact&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&border_color=233554&hide_border=false&card_width=400"
+          id="top-langs-img"
+          src="https://github-readme-stats.vercel.app/api/top-langs/?username=gunapalani&layout=compact&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&border_color=233554&hide_border=false&card_width=400&cache_seconds=86400"
           alt="Top Languages"
-          class="w-full rounded-lg border border-[#233554] hover:border-[#64ffda] transition-colors duration-300"
+          class="w-full rounded-lg border border-[#233554] hover:border-[#64ffda] transition-colors duration-300 stats-img"
           loading="lazy"
+          onerror="this.onerror=null; this.src='https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=gunapalani&layout=compact&theme=dark&bg_color=0a0a0a&title_color=64ffda&text_color=ffffff&border_color=233554&hide_border=false&card_width=400';"
         />
       </div>
     </div>
@@ -192,6 +196,11 @@
 
   .github-card:hover img {
     filter: brightness(1.05);
+  }
+
+  .stats-img {
+    min-height: 150px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #112240 100%);
   }
 
   @media (max-width: 768px) {
